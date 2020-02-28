@@ -3,4 +3,4 @@
 Here you will have all the access to the VDC's code, as long as its latest releases.
 
 ### What is a VDC?
-Virtual Data Container (shortly called VDC)
+Virtual Data Container (shortly called VDC) is a new way of presenting the Data.
