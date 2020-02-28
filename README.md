@@ -1,5 +1,3 @@
-![VDC Logo](https://github.com/thevdc/virtualdatacontainer/blob/master/VDC-logo.png)
-
 ## Welcome to Virtual Data Container's Official Page
 
 Here you will have all the access to the VDC's code, the Blueprint Editor's code, as well as their latest releases.
