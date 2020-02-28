@@ -1,3 +1,4 @@
+![VDC Logo](https://github.com/thevdc/virtualdatacontainer/blob/master/VDC-logo.png)
 
 ## Welcome to Virtual Data Container's Official Page
 
