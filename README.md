@@ -8,7 +8,7 @@ The Virtual Data Container (shortly refered to as "VDC") represents a new way of
 
 In a few words, a Virtual Data Container could be a set of data, a web service, an operating system, an application etc., organised in a virtual container image and presented to the potential buyers / users. This is the future, transforming existing operations and datasets to services and making them easily accesible to the end users. A VDC is versatile, easily upgradable, and can be tailored to a specific customers' needs. However, in case a VDC is structured as a concrete and preset / prefixed service, potential users can find out if a its good for them or not.
 
-As data can be distributed among resources both on the Cloud and the Edge, Virtual Data Containers (VDCs) are proposed as a mean for timely and securely offering data also transparently with respect to their location and format.
+As data can be distributed among resources both on the Cloud and the Edge, Virtual Data Containers (the VDCs) are proposed as a mean for timely and securely offering data also transparently with respect to their location and format.
 In more detail, a VDC:
 - Provides uniform access to data sources regardless of where they run, i.e., on the edge or on the cloud.
 - Embeds a set of data processing techniques able to transform data (e.g., encryption, compression).
