@@ -10,10 +10,10 @@ In a few words, a Virtual Data Container could be a set of data, a web service, 
 
 As data can be distributed among resources both on the Cloud and the Edge, Virtual Data Containers (VDCs) are proposed as a mean for timely and securely offering data also transparently with respect to their location and format.
 In more detail, a VDC:
-• Provides uniform access to data sources regardless of where they run, i.e., on the edge or on the cloud.
-• Embeds a set of data processing techniques able to transform data (e.g., encryption, compression).
-• Allows composing these processing techniques in pipelines (inspired by the node-RED programming model) and executing the resulting application.
-• Can be easily deployed on resources which can live either on the edge or in the cloud.
+- Provides uniform access to data sources regardless of where they run, i.e., on the edge or on the cloud.
+- Embeds a set of data processing techniques able to transform data (e.g., encryption, compression).
+- Allows composing these processing techniques in pipelines (inspired by the node-RED programming model) and executing the resulting application.
+- Can be easily deployed on resources which can live either on the edge or in the cloud.
 
 ## Design & Development
 ![alt text](https://github.com/thevdc/virtualdatacontainer/blob/master/VDC-simple-architecture.png)
