@@ -1,5 +1,3 @@
-title: [The title of your site]
-description: [A short description of your site's purpose]
 ## Welcome to Virtual Data Container's Official Page
 
 Here you will have all the access to the VDC's code, the Blueprint Editor's code, as well as their latest releases.
