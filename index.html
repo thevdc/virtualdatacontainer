@@ -73,7 +73,7 @@ transmission), and security (e.g., not all the data can be moved to the consumer
   <li><b>Update strategy</b>, a plain text that determines the OS’s upgrade plan for traditional updates, security updates and backports.
 </li>
   </ul> 
-  <br><br>
+  <br>
 The first section of the Artifact records general information related to the VDC composition system, like a business description of it, legislative compliances, licences, the category and an abstract reference to its inputs and outputs. It should properly introduce the reader and potential buyer to the VDC (the service composed software), analysing all the basic and key elements. This section should not detail specialized VDCs’ sectors, for such a description will be cited in later sections of the Artifact. The first section’s main aim is to provide all the information needed for the decision maker (like a company’s senior officer) to consider acquiring the VDC.
   <br>
   <h3> Second Artifact Section </h3>
@@ -84,7 +84,7 @@ The first section of the Artifact records general information related to the VDC
   <li><b>Total Price Amount</b>, an integer field where the total amount needed for the buyer to acquire the VDC will be cited. The price shall primarily be a result of the pricing model’s choice. That said, the “Pricing Model” and “Total Price Amount” fields should be dependent on each other.
 </li>
 </ul> 
-  <br><br>
+  <br>
   The second section of the Artifact deals with the pricing of the VDC as a whole and all the financial matters regarding it. Mentioned many times earlier, the VDC is composed of a series of different microservices,  combined under one (or more) stable API. Such an architecture makes it mandatory for a specific pricing model to be constructed. Although one model could be enough to explain the pricing dependencies in a company’s executive, it seems a better idea to implement two kinds of pricing schemes in order to give a better view for the total cost needed to acquire the VDC.
   <br>  
   <h3> Third Artifact Section </h3>
@@ -99,7 +99,7 @@ The first section of the Artifact records general information related to the VDC
   <li><b>Artifact Orchestration Tools</b>, an array field which shall briefly analyse the Deployment and Orchestration tools used by the VDC. One such basic tool is the API used from it’s microservices.
 </li>
 </ul> 
-<br><br>
+<br>
 The third Artifact section includes an abstract technical overview regarding the versioning, the libraries, the scalability, the limitations and the supporting databases for each service inside the VDC. Furthermore, it analyzes the VDC's full deployment sequence, such as the dependencies between microservices and, of course, the sequence itself. In addition, this section will list the cookbooks for each service inside the VDC. Last but not least, it will analyse all the Artifact orchestrating tools with a list of deployment and orchestration ones. This way, a potential buyer would get the “full picture” of the VDC’s technical requirements.
   <br> 
   <h3> Fourth Artifact Section </h3>
@@ -114,7 +114,7 @@ The third Artifact section includes an abstract technical overview regarding the
   <li><b>API</b>, once more a string value reporting the VDC’s API to the developers.
 </li>
 </ul> 
-<br><br>
+<br>
 The fourth Artifact section refers to the developers of a company. The ones responsible for the proper function of all the software inside a business corporation are the developers. They make sure that everything works according to the plan and ensure the stability for every kind of product is running on a computer. This means that the team will have to be in a standby mode every single hour of the day, for the company’s software to always work properly. In the case of the VDC, the developers team will have to deeply understand how it works. This section shall explain all the components of the VDC in order to give the developers a complete overview.
   <br><br>
   You can see an example of the four sections combined (in pseudo JSON structure) below:
