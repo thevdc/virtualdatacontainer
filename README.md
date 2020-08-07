@@ -1,5 +1,5 @@
 # Welcome to Virtual Data Container's Official Page
-Here you will have all the access to the VDC's code, the Blueprint Editor's code, as well as their latest releases.
+Here you will have all the access to the VDC's code, the Blueprint-Artifact Editor's code, as well as their latest releases.
 
 ![alt text](https://github.com/thevdc/virtualdatacontainer/blob/master/VDC-logo.png)
 
@@ -38,7 +38,57 @@ making them available to the user cannot be provided at the edge), the network c
 transmission), and security (e.g., not all the data can be moved to the consumer side, thus even the processing cannot be placed at the edge).
 
 ## Execution
+![alt text](https://github.com/thevdc/virtualdatacontainer/blob/master/VDC-architecture-2.png)
+
 The VDC Deployment Environment can be built on top of a Kubernetes cluster, or a Docker / Docker Swarm cluster. In fact, given a VDC Blueprint / Artifact, based on the cookbook section, a docker container is generated and deployed. Furthermore, given a VDC Blueprint-Artifact, many application developers can select it for their own application. As a consequence, several applications can operate with different VDCs. Moreover, as the same VDC Blueprint can be adopted in different applications, each of these applications includes instances generated from the VDC Artifact; thus, they are connected to the same data sources. Thanks to the abstraction layer provided by the VDC, applications deployed through the platform can access the required data regardless of their nature and location (cloud or edge). Due to the distributed nature of the applications to be managed, to the execution environment being distributed by definition and because of the different computational power offered by the devices, it might happen that only a subset of the modules can be installed on a specific edge device. For this reason, at deployment time, not only the data-intensive application is distributed over the cloud and edge federations, but also the execution environment is properly deployed and configured to support the data and computation movement. The decision on where to locate both the application and the data required by the application itself is taken at design time, but can be updated during the application execution, according to the detected state of the execution environment.
 
 ## How can I know which VDC best suits my needs?
-For a VDC's operation to be fully understandable by potential users / buyers, each and every one will have a unique JSON formatted document, named "Blueprint" or "Artifact". This Blueprint is divided into four main sections. Each section refers to a specific group of people, for each group to better understand the VDC's structure and way of operation. The first section is intended to provide general information to one of the company’s decision strategy makers, usually the one responsible for it’s vision. The second one should provide all the information needed for a company’s executive who has primary responsibility for managing it’s finances and all the issues of financial nature. The third section should refer to the company’s executive whose main, primary focus is on scientific and technological issues within the organization. Last but not least, the fourth section should be written with the company’s developers in mind. They shall have access to all the vital information for their knowledge upon the VDC to be thorough.
+For a VDC's operation to be fully understandable by potential users / buyers, each and every one will have a unique JSON formatted document, named "Blueprint" or "Artifact". This Blueprint is divided into four main sections (one can extend or reduce those sections). Each section refers to a specific group of people, for each group to better understand the VDC's structure and way of operation. The first section is intended to provide general information to one of the company’s decision strategy makers, usually the one responsible for it’s vision. The second one should provide all the information needed for a company’s executive who has primary responsibility for managing it’s finances and all the issues of financial nature. The third section should refer to the company’s executive whose main, primary focus is on scientific and technological issues within the organization. Last but not least, the fourth section should be written with the company’s developers in mind. They shall have access to all the vital information for their knowledge upon the VDC to be thorough.
+
+## The VDC Artifact-Blueprint
+As we already mentioned, the original VDC Blueprint is divided into four main sections. Let us see the sections with more detail:
+
+### First Artifact Section
+Type of attributes that could be included in the JSON Blueprint are:
+- Unique identifier, which differentiates the product
+- General details, a plain text that includes details about the functionality, description and logic of the service. Furthermore, the team behind the product should provide general information and a description regarding the services and the data.  For example, they could give an answer for each of the following questions: What data is involved in the app? What is the value of the data?  What are the services that access the data?
+- OS details, where according to the Host OS protection requirements stated in “Threat Model for microservices in containerized environments” table (2.3) in Chapter 2, the product’s seller should state both the OS’s host and distribution of it.
+- Licencing, again a plain text field which shall briefly explain details about the product’s licencing. Those details may vary depending the microservice’s included. This field shall contain only the most important pieces of information.
+- Compliance, once again a string value, summarising the cases where the product complies and / or conforms to a policy or a law.
+- Update strategy, a plain text that determines the OS’s upgrade plan for   traditional updates, security updates and backports.
+
+The first section of the Artifact records general information related to the service composition system, like a business description of the application, legislative compliances, licences, the category and an abstract reference to its inputs and outputs. It should properly introduce the reader and potential buyer to the “product” (the service composed software), analysing all the basic and key elements. This section should not detail specialized microservices’ sectors, for such a description will be cited in later sections of the Artifact. The first section’s main aim is to provide all the information needed for the decision maker(like a company’s senior officer) to consider acquiring the product.
+
+### Second Artifact Section
+Type of attributes that could be included in the JSON Schema from this section are the following two:
+- Pricing Model, a string (plain text) field where the pricing model chosen by buyer will be specified. There are two such models (Pricing as a Service / Pricing as a Structure), which means that this field is expected to include one of the aforementioned specifications.
+- Total Price Amount, an integer field where the total amount needed for the buyer to acquire the product will be cited. The price shall primarily be a result of the pricing model’s choice. That said, the “Pricing Model” and “Total Price Amount” fields should be dependent on each other.
+
+The second section of the Artifact deals with the pricing of the product as a whole and all the financial matters regarding it. Mentioned many times earlier, the product is composed of a series of different microservices,  combined under one (or more) stable API. Such an architecture makes it mandatory for a specific pricing model to be constructed. Although one model could be enough to explain the pricing dependencies in a company’s executive, it seems a better idea to implement two kinds of pricing schemes in order to give a better view for the total cost needed to acquire the product.
+
+### Third Artifact Section
+There are few attributes that could be included in the JSON Blueprint from this section:
+- Technical Overview, an array which shall contain string values of each microservice. Those values are the Versioning / libraries, the Scalability, the Limitations and the Supporting Databases of each microservice-module. In a few words, Technical Overview will be an array including modules and each module shall include the aforementioned values. Versioning and libraries field will be a string one, citing the microservice’s versioning and supporting libraries in a few words. The Scalability field shall also be a plain text, which will contain few details regarding that module’s scalability options. Limitations field will be, once more, a string one, including the basic and most important limitations of the module. Last but not least, the Supporting Databases field shall indicate which DBs are supported by the microservice.
+- Deployment Sequence, an array which will specify the details about the product’s deployment. The array shall contain two string values, the Dependencies between Microservices and the Deployment Sequence itself. The first value, Dependencies between Microservices, will be a plain text field briefly citing all the dependencies between the product’s modules. The second value, Deployment Sequence, will also be a string field, this time analysing the product’s deployment sequence.
+- Cookbooks, once more an array value containing two values, Artifacts and Cookbook Details. The Artifacts field shall be a string value, specifying any possible artifacts the products has, except the cookbooks found in it’s microservices. The Cookbook Details field shall be an array, including all the cookbooks used by each product’s module (microservice). Each module will be a different array value, citing it’s cookbooks in plain text format.
+- Artifact Orchestration Tools, an array field which shall briefly analyse the Deployment and Orchestration tools used by the product. One such basic tool is the API used from it’s microservices.
+
+The third Artifact section includes an abstract technical overview regarding the versioning, the libraries, the scalability, the limitations and the supporting databases for each microservice. Furthermore, it analyzes the “product’s” full deployment sequence, such as the dependencies between microservices and, of course, the sequence itself. In addition, this section will list the cookbooks for each microservice. Last but not least, it will analyse all the Artifact orchestrating tools with a list of deployment and orchestration ones. This way, a potential buyer would get the “full picture” of the microrservice’s technical requirements.
+
+### Fourth Artifact Section
+Type of attributes that could be included to the Artifact from this fourth and final section are the following:
+- Junit Tests, a string (plain text) field where the tests being done to find any faults at the product’s behaviour and functionality product will be specified in short.
+- Input / Output, a string value which shall cite the product’s input and output for the developers to know their exact types.
+- Tuples, a plain text field including all the information needed for the developers to understand which Tuples are contained in each cookbook.
+- API, once more a string value reporting the product’s API to the developers.
+
+The fourth Artifact section refers to the developers of a company. The ones responsible for the proper function of all the software inside a business corporation are the developers. They make sure that everything works according to the plan and ensure the stability for every kind of product is running on a computer. This means that the team will have to be in a standby mode every single hour of the day, for the company’s software to always work properly. In the case of the microservices product, the developers team will have to deeply understand how it works. This section shall explain all the components of the product in order to give the developers a complete overview.
+
+You can see an example of the four sections combined (in pseudo JSON structure) below:
+
+![alt text](https://github.com/thevdc/virtualdatacontainer/blob/master/full-artifact-example.png)
+
+## The VDC Blueprint-Artifact Editor
+We will upload a complete VDC Artifact-Blueprint Editor soon. Through the Editor, one will be able to build a correct JSON-formated Artifact for any VDC.
+
+## External Links where VDC is mentioned and implemented
