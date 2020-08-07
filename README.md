@@ -93,4 +93,9 @@ Of course, one can extend or reduce the sections of his/her Blueprint. It is up 
 ## The VDC Blueprint-Artifact Editor
 We will upload a complete VDC Artifact-Blueprint Editor soon. Through the Editor, one will be able to build a correct JSON-formated Artifact for any VDC.
 
-## External Links where VDC is mentioned and implemented
+## External Links where VDC is mentioned and/or implemented
+European Research Projects:
+[DITAS European Project](https://www.ditas-project.eu)
+Scientific Papers:
+[Data and Computation Movement in Fog Environments: The DITAS Approach](https://doi.org/10.1007/978-3-319-94890-4_12)
+[DITAS: Unleashing the Potential of Fog Computing to Improve Data-Intensive Applications](https://doi.org/10.1007/978-3-319-79090-9_11)
