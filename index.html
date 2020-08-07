@@ -22,7 +22,7 @@ layout: default
   <li>Allows composing these processing techniques in pipelines (inspired by the node-RED programming model) and executing the resulting application.</li>
   <li>Can be easily deployed on resources which can live either on the edge or in the cloud.</li>
   </ul>
-  
+  <br><br>
   <h2> Design & Development </h2>
   
   <img src="VDC-simple-architecture.png" alt="hi" class="inline"/>
@@ -47,12 +47,15 @@ deployment is the key element in the approach; as in this phase, it is required 
 data. Deciding where to deploy the VDC depends on the resources required by the VDC (e.g., it might happen that the amount of resources to process the data before
 making them available to the user cannot be provided at the edge), the network characteristics (e.g., the connection at the consumer side can support a high-rate
 transmission), and security (e.g., not all the data can be moved to the consumer side, thus even the processing cannot be placed at the edge).
-  
+  <br><br>
   <h2> Execution </h2>
   The VDC Deployment Environment can be built on top of a Kubernetes cluster, or a Docker / Docker Swarm cluster. In fact, given a VDC Blueprint / Artifact, based on the cookbook section, a docker container is generated and deployed. Furthermore, given a VDC Blueprint-Artifact, many application developers can select it for their own application. As a consequence, several applications can operate with different VDCs. Moreover, as the same VDC Blueprint can be adopted in different applications, each of these applications includes instances generated from the VDC Artifact; thus, they are connected to the same data sources. Thanks to the abstraction layer provided by the VDC, applications deployed through the platform can access the required data regardless of their nature and location (cloud or edge). Due to the distributed nature of the applications to be managed, to the execution environment being distributed by definition and because of the different computational power offered by the devices, it might happen that only a subset of the modules can be installed on a specific edge device. For this reason, at deployment time, not only the data-intensive application is distributed over the cloud and edge federations, but also the execution environment is properly deployed and configured to support the data and computation movement. The decision on where to locate both the application and the data required by the application itself is taken at design time, but can be updated during the application execution, according to the detected state of the execution environment.
-  
+  <br><br>
   <h2> How can I know which VDC best suits my needs? </h2>
   For a VDC's operation to be fully understandable by potential users / buyers, each and every one will have a unique JSON formatted document, named "Blueprint" or "Artifact". This Blueprint is divided into four main sections (one can extend or reduce those sections). Each section refers to a specific group of people, for each group to better understand the VDC's structure and way of operation. The first section is intended to provide general information to one of the company’s decision strategy makers, usually the one responsible for it’s vision. The second one should provide all the information needed for a company’s executive who has primary responsibility for managing it’s finances and all the issues of financial nature. The third section should refer to the company’s executive whose main, primary focus is on scientific and technological issues within the organization. Last but not least, the fourth section should be written with the company’s developers in mind. They shall have access to all the vital information for their knowledge upon the VDC to be thorough.
+  <br><br>
+  <h2> The VDC Artifact-Blueprint Editor </h2>
+  We will upload a complete VDC Artifact-Blueprint Editor soon. Through the Editor, one will be able to build a correct JSON-formated Artifact for any VDC.
 </body>
 
 
