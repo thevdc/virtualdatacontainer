@@ -59,7 +59,7 @@ transmission), and security (e.g., not all the data can be moved to the consumer
   <h2> The VDC Artifact-Blueprint </h2>
   As we already mentioned, the original VDC Blueprint is divided into four main sections. Let us see the sections with more detail:
   <br>
-  <h3> First Artifact Section </h3
+  <h3> First Artifact Section </h3>
   Type of attributes that could be included in the JSON Blueprint are:
   <ul>
   <li><b>Unique identifier</b>, which differentiates the product</li>
@@ -73,14 +73,50 @@ transmission), and security (e.g., not all the data can be moved to the consumer
   <li><b>Update strategy</b>, a plain text that determines the OS’s upgrade plan for traditional updates, security updates and backports.
 </li>
   </ul> 
+  <br><br>
 The first section of the Artifact records general information related to the VDC composition system, like a business description of it, legislative compliances, licences, the category and an abstract reference to its inputs and outputs. It should properly introduce the reader and potential buyer to the VDC (the service composed software), analysing all the basic and key elements. This section should not detail specialized VDCs’ sectors, for such a description will be cited in later sections of the Artifact. The first section’s main aim is to provide all the information needed for the decision maker (like a company’s senior officer) to consider acquiring the VDC.
   <br>
-  <h3> Second Artifact Section </h3
+  <h3> Second Artifact Section </h3>
+  Type of attributes that could be included in the JSON Schema from this section are the following two:
+  <ul>
+  <li><b>Pricing Model</b>, a string (plain text) field where the pricing model chosen by buyer will be specified. There are two such models (Pricing as a Service / Pricing as a Structure), which means that this field is expected to include one of the aforementioned specifications.
+</li>
+  <li><b>Total Price Amount</b>, an integer field where the total amount needed for the buyer to acquire the VDC will be cited. The price shall primarily be a result of the pricing model’s choice. That said, the “Pricing Model” and “Total Price Amount” fields should be dependent on each other.
+</li>
+</ul> 
+  <br><br>
+  The second section of the Artifact deals with the pricing of the VDC as a whole and all the financial matters regarding it. Mentioned many times earlier, the VDC is composed of a series of different microservices,  combined under one (or more) stable API. Such an architecture makes it mandatory for a specific pricing model to be constructed. Although one model could be enough to explain the pricing dependencies in a company’s executive, it seems a better idea to implement two kinds of pricing schemes in order to give a better view for the total cost needed to acquire the VDC.
   <br>  
-  <h3> Third Artifact Section </h3
+  <h3> Third Artifact Section </h3>
+  There are few attributes that could be included in the JSON Blueprint from this section:
+  <ul>
+    <li><b>Technical Overview</b>, an array which shall contain string values of each service inside the VDC. Those values are the Versioning / libraries, the Scalability, the Limitations and the Supporting Databases of each service-module (again, inside the VDC). In a few words, Technical Overview will be an array including modules and each module shall include the aforementioned values. Versioning and libraries field will be a string one, citing the VDC’s versioning and supporting libraries in a few words. The Scalability field shall also be a plain text, which will contain few details regarding that VDC’s scalability options. Limitations field will be, once more, a string one, including the basic and most important limitations of the VDC. Last but not least, the Supporting Databases field shall indicate which DBs are supported by the VDC.
+</li>
+  <li><b>Deployment Sequence</b>, an array which will specify the details about the VDC’s deployment. The array shall contain two string values, the Dependencies between services inside the VDC and the Deployment Sequence itself. The first value, Dependencies between services, will be a plain text field briefly citing all the dependencies between the VDC’s modules. The second value, Deployment Sequence, will also be a string field, this time analysing the VDC’s deployment sequence.
+</li>
+  <li><b>Cookbooks</b>, once more an array value containing two values, Artifacts and Cookbook Details. The Artifacts field shall be a string value, specifying any possible artifacts the VDC has, except the cookbooks found in it’s microservices. The Cookbook Details field shall be an array, including all the cookbooks used by each VDCs’s module (service). Each module will be a different array value, citing it’s cookbooks in plain text format.
+</li>
+  <li><b>Artifact Orchestration Tools</b>, an array field which shall briefly analyse the Deployment and Orchestration tools used by the VDC. One such basic tool is the API used from it’s microservices.
+</li>
+</ul> 
+<br><br>
+The third Artifact section includes an abstract technical overview regarding the versioning, the libraries, the scalability, the limitations and the supporting databases for each service inside the VDC. Furthermore, it analyzes the VDC's full deployment sequence, such as the dependencies between microservices and, of course, the sequence itself. In addition, this section will list the cookbooks for each service inside the VDC. Last but not least, it will analyse all the Artifact orchestrating tools with a list of deployment and orchestration ones. This way, a potential buyer would get the “full picture” of the VDC’s technical requirements.
   <br> 
-  <h3> Fourth Artifact Section </h3
-  
+  <h3> Fourth Artifact Section </h3>
+  Type of attributes that could be included to the Artifact from this fourth and final section are the following:
+  <ul>
+    <li><b>Junit Tests</b>, a string (plain text) field where the tests being done to find any faults at the VDC’s behaviour and functionality product will be specified in short.
+</li>
+  <li><b>Input / Output</b>, a string value which shall cite the VDC’s input and output for the developers to know their exact types.
+</li>
+  <li><b>Tuples</b>, a plain text field including all the information needed for the developers to understand which Tuples are contained in each cookbook.
+</li>
+  <li><b>API</b>, once more a string value reporting the VDC’s API to the developers.
+</li>
+</ul> 
+<br><br>
+The fourth Artifact section refers to the developers of a company. The ones responsible for the proper function of all the software inside a business corporation are the developers. They make sure that everything works according to the plan and ensure the stability for every kind of product is running on a computer. This means that the team will have to be in a standby mode every single hour of the day, for the company’s software to always work properly. In the case of the VDC, the developers team will have to deeply understand how it works. This section shall explain all the components of the VDC in order to give the developers a complete overview.
+  <br><br>
   You can see an example of the four sections combined (in pseudo JSON structure) below:
   <img src="full-artifact-example.png" alt="hi" class="inline"/>
 Of course, one can extend or reduce the sections of his/her Blueprint. It is up to the provider to create the proper Blueprint-Artifact. However, the aforementioned four sections are considered as the main ones, since they include a broad variety of information regarding the VDC and its internal structure.
