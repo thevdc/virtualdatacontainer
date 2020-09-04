@@ -1,0 +1,991 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/DITAS-Project/blueprint",
+  "title": "The Abstract VDC Blueprint Schema",
+  "type": "object",
+  "description": "This is an Abstract VDC Blueprint which consists of five distinct sections",
+  "properties": {
+    "INTERNAL_STRUCTURE": {
+      "$comment": "The first section",
+      "type": "object",
+      "description": "General information about the Blueprint",
+      "properties": {
+        "Overview": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "This field should contain the name of the Blueprint"
+            },
+            "description": {
+              "type": "string",
+              "description": "This field should contain a short description of the Blueprint"
+            },
+            "tags": {
+              "type": "array",
+              "description": "Each element of this array should contain some keywords that describe the functionality of each one exposed VDC method",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "method_id": {
+                    "type": "string",
+                    "description": "The id (operationId) of the method (as indicated in the EXPOSED_API.paths field)"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "method_id",
+                  "tags"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "description",
+            "tags"
+          ]
+        },
+        "Data_Sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "A unique identifier"
+              },
+              "description": {
+                "type": "string"
+              },
+              "location": {
+                "enum": [
+                  "cloud",
+                  "edge"
+                ]
+              },
+              "class": {
+                "enum": [
+                  "relational database",
+                  "object storage",
+                  "time-series database",
+                  "api",
+                  "data stream"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "MySQL",
+                  "Minio",
+                  "InfluxDB",
+                  "rest",
+                  "other"
+                ]
+              },
+              "parameters": {
+                "type": "object",
+                "description": "Connection parameters"
+              },
+              "schema": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "Methods_Input": {
+          "type": "object",
+          "description": "This field contains the part of the data source that each method needs to be executed",
+          "properties": {
+            "Methods": {
+              "type": "array",
+              "description": "The list of methods",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "method_id": {
+                    "type": "string",
+                    "description": "The id (operationId) of the method (as indicated in the EXPOSED_API.paths field)"
+                  },
+                  "dataSources": {
+                    "type": "array",
+                    "description": "The list of data sources required by the method",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "dataSource_id": {
+                          "type": "string",
+                          "description": "The id of the data sources (as indicated in the Data_Sources field)"
+                        },
+                        "dataSource_type": {
+                          "type": "string",
+                          "description": "The type of the data sources (relational/non-relational/object)"
+                        },
+                        "database": {
+                          "type": "array",
+                          "description": "The list of databases required by a method in a data source",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "database_id": {
+                                "type": "string",
+                                "description": "The id of the database"
+                              },
+                              "tables": {
+                                "type": "array",
+                                "description": "The list of tables/collections required by a method in a data source",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "table_id": {
+                                      "type": "string",
+                                      "description": "The id of the tables/collection "
+                                    },
+                                    "columns": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "column_id": {
+                                            "type": "string",
+                                            "description": "The id of the column/field"
+                                          },
+                                          "computeDataUtility": {
+                                            "type": "boolean",
+                                            "description": "True if it is required for data utility computation"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Flow": {
+          "type": "object",
+          "description": "The data flow that implements the VDC",
+          "properties": {
+            "platform": {
+              "enum": [
+                "Spark",
+                "Node-RED"
+              ]
+            },
+            "parameters": {
+              "type": "object"
+            },
+            "source_code": {}
+          }
+        },
+        "DAL_Images": {
+          "description": "Docker images that must be deployed in the DAL indexed by DAL name. It will be used to compose the service name and the DNS entry that other images in the cluster can access to",
+          "type": "object",
+          "additionalProperties": {
+            "description": "Information about the DAL including its original location",
+            "type": "object",
+            "required": [
+              "original_ip"
+            ],
+            "properties": {
+              "original_ip": {
+                "description": "IP of the original DAL's location",
+                "type": "string"
+              },
+              "images": {
+                "description": "Set of images to deploy indexed by the image identifier",
+                "type": "object",
+                "additionalProperties": {
+                  "description": "ImageInfo is the information about an image that will be deployed by the deployment engine",
+                  "type": "object",
+                  "required": [
+                    "image"
+                  ],
+                  "properties": {
+                    "external_port": {
+                      "description": "Port in which this image must be exposed. It must be unique across all images in all the ImageSets defined in this blueprint. Due to limitations in k8s, the port range must be bewteen 30000 and 32767",
+                      "type": "integer"
+                    },
+                    "image": {
+                      "description": "Image is the image name in the standard format [group]/<image_name>:[release]",
+                      "type": "string"
+                    },
+                    "internal_port": {
+                      "description": "Port in which the docker image is listening internally. Two images inside the same ImageSet can't have the same internal port",
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VDC_Images": {
+          "$ref": "#/properties/INTERNAL_STRUCTURE/properties/DAL_Images/additionalProperties/properties/images"
+        },
+        "Identity_Access_Management": {
+          "type": "object",
+          "properties": {
+            "jwks_uri": {
+              "type": "string"
+            },
+            "iam_endpoint": {
+              "type": "string"
+            },
+            "roles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "provider": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "uri": {
+                    "type": "string"
+                  },
+                  "loginPortal": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "uri"
+                ]
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "jwks_uri",
+            "iam_endpoint"
+          ]
+        },
+        "Testing_Output_Data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method_id": {
+                "type": "string",
+                "description": "The id (operationId) of the method (as indicated in the EXPOSED_API.paths field)"
+              },
+              "zip_data": {
+                "type": "string",
+                "description": "The URI to the zip testing output data for each one exposed VDC method"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "method_id",
+              "zip_data"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Overview",
+        "Data_Sources"
+      ]
+    },
+    "DATA_MANAGEMENT": {
+      "$comment": "The second section",
+      "description": "list of methods",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "method_id": {
+            "description": "The id (operationId) of the method (as indicated in the EXPOSED_API.paths field)",
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "goal trees",
+            "properties": {
+              "dataUtility": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "definition of the metric",
+                  "properties": {
+                    "id": {
+                      "description": "id of the metric",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "name of the metric",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "type of the metric",
+                      "type": "string"
+                    },
+                    "properties": {
+                      "type": "object",
+                      "description": "properties related to the metric",
+                      "additionalProperties": {
+                        "type": "object",
+                        "description": "properties related to the metric",
+                        "properties": {
+                          "unit": {
+                            "description": "unit of measure of the property",
+                            "type": "string"
+                          },
+                          "maximum": {
+                            "description": "lower limit of the offered property",
+                            "type": "number"
+                          },
+                          "minimum": {
+                            "description": "upper limit of the offered property",
+                            "type": "number"
+                          },
+                          "value": {
+                            "description": "value of the property",
+                            "type": [
+                              "string",
+                              "number",
+                              "array",
+                              "boolean"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "security": {
+                "$ref": "#/properties/DATA_MANAGEMENT/items/properties/attributes/properties/dataUtility"
+              },
+              "privacy": {
+                "$ref": "#/properties/DATA_MANAGEMENT/items/properties/attributes/properties/dataUtility"
+              }
+            }
+          }
+        },
+        "required": [
+          "method_id",
+          "attributes"
+        ]
+      }
+    },
+    "ABSTRACT_PROPERTIES": {
+      "$comment": "The third section"
+    },
+    "COOKBOOK_APPENDIX": {
+      "$comment": "The fourth section",
+      "description": "CookbookAppendix is the definition of the Cookbook Appendix section in the blueprint",
+      "type": "object",
+      "properties": {
+        "Identity_Access_Management": {
+          "type": "object",
+          "properties": {
+            "validation_keys": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "mapping": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "provider": {
+                        "type": "string"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "role_map": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "matcher": {
+                              "type": "string"
+                            },
+                            "roles": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "priority": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      },
+                      "mapping_url": {
+                        "enum": [
+                          ""
+                        ]
+                      }
+                    },
+                    "required": [
+                      "role_map"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "provider": {
+                        "type": "string"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "mapping_url": {
+                        "type": "string"
+                      },
+                      "role_map": {
+                        "enum": [
+                          ""
+                        ]
+                      }
+                    },
+                    "required": [
+                      "mapping_url"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "mapping"
+          ]
+        },
+        "Deployment": {
+          "description": "DeploymentInfo contains information of a deployment than may compromise several clusters",
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "extra_properties": {
+              "type": "object",
+              "title": "ExtraPropertiesType represents extra properties to define for resources, infrastructures or deployments. This properties are provisioner or deployment specific and they should document them when they expect any.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "id": {
+              "description": "Unique ID for the deployment",
+              "type": "string"
+            },
+            "infrastructures": {
+              "description": "Lisf of infrastructures, each one representing a different cluster.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "title": "InfrastructureDeploymentInfo contains information about a cluster of nodes that has been instantiated or were already existing.",
+                "required": [
+                  "id",
+                  "type",
+                  "provider",
+                  "Nodes"
+                ],
+                "properties": {
+                  "Nodes": {
+                    "description": "Set of nodes in the infrastructure indexed by role",
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "description": "NodeInfo is the information of a virtual machine that has been instantiated or a physical one that was pre-existing",
+                        "type": "object",
+                        "required": [
+                          "ip",
+                          "drive_size"
+                        ],
+                        "properties": {
+                          "cores": {
+                            "description": "Number of cores.",
+                            "type": "integer"
+                          },
+                          "cpu": {
+                            "description": "CPU speed in Mhz.",
+                            "type": "integer"
+                          },
+                          "data_drives": {
+                            "description": "Data drives information",
+                            "type": "array",
+                            "items": {
+                              "description": "DriveInfo is the information of a drive that has been instantiated",
+                              "type": "object",
+                              "required": [
+                                "name",
+                                "size"
+                              ],
+                              "properties": {
+                                "name": {
+                                  "description": "Name of the data drive",
+                                  "type": "string"
+                                },
+                                "size": {
+                                  "description": "Size of the disk in bytes",
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "drive_size": {
+                            "description": "Size of the boot disk in bytes",
+                            "type": "integer"
+                          },
+                          "extra_properties": {
+                            "type": "object",
+                            "title": "ExtraPropertiesType represents extra properties to define for resources, infrastructures or deployments. This properties are provisioner or deployment specific and they should document them when they expect any.",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "hostname": {
+                            "description": "Hostname of the node.\nrequiered:true",
+                            "type": "string"
+                          },
+                          "ip": {
+                            "description": "IP assigned to this node.",
+                            "type": "string"
+                          },
+                          "ram": {
+                            "description": "RAM quantity in bytes.",
+                            "type": "integer"
+                          },
+                          "role": {
+                            "description": "Role of the node. Master or slave in case of Kubernetes.",
+                            "type": "string",
+                            "example": "master"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "VDM": {
+                    "description": "Set weather the VDM is running in this cluster or not",
+                    "type": "boolean"
+                  },
+                  "extra_properties": {
+                    "type": "object",
+                    "title": "ExtraPropertiesType represents extra properties to define for resources, infrastructures or deployments. This properties are provisioner or deployment specific and they should document them when they expect any.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "id": {
+                    "description": "Unique infrastructure ID on the deployment",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Name of the infrastructure",
+                    "type": "string"
+                  },
+                  "provider": {
+                    "description": "CloudProviderInfo contains information about a cloud provider",
+                    "type": "object",
+                    "required": [
+                      "api_endpoint"
+                    ],
+                    "properties": {
+                      "api_endpoint": {
+                        "description": "Endpoint to use for this infrastructure",
+                        "type": "string"
+                      },
+                      "api_type": {
+                        "description": "Type of the infrastructure. i.e AWS, Cloudsigma, GCP or Edge",
+                        "type": "string"
+                      },
+                      "credentials": {
+                        "description": "Credentials to access the cloud provider. Either this or secret_id is mandatory. Each cloud provider should define the format of this element.",
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      },
+                      "secret_id": {
+                        "description": "Secret identifier to use to log in to the infrastructure manager.",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "status": {
+                    "description": "Status of the infrastructure",
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "Type of the infrastructure: cloud or edge",
+                    "type": "string",
+                    "pattern": "cloud|edge"
+                  },
+                  "vdcs": {
+                    "description": "Configuration of VDCs running in the cluster, indexed by VDC identifier.",
+                    "type": "object",
+                    "additionalProperties": {
+                      "description": "VDCInfo contains information about related to a VDC running in a kubernetes cluster",
+                      "type": "object",
+                      "properties": {
+                        "Ports": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "name": {
+              "description": "Name of the deployment",
+              "type": "string"
+            },
+            "status": {
+              "description": "Global status of the deployment",
+              "type": "string"
+            }
+          }
+        },
+        "Resources": {
+          "description": "Resources is a set of infrastructures that need to be instantiated or configurated to form clusters",
+          "type": "object",
+          "required": [
+            "name",
+            "infrastructures"
+          ],
+          "properties": {
+            "description": {
+              "description": "Optional description",
+              "type": "string"
+            },
+            "infrastructures": {
+              "description": "List of infrastructures to deploy for this hybrid deployment",
+              "type": "array",
+              "items": {
+                "description": "InfrastructureType is a set of resources that need to be created or configured to form a cluster",
+                "type": "object",
+                "required": [
+                  "name",
+                  "resources"
+                ],
+                "properties": {
+                  "description": {
+                    "description": "Optional description for the infrastructure",
+                    "type": "string"
+                  },
+                  "extra_properties": {
+                    "type": "object",
+                    "title": "ExtraPropertiesType represents extra properties to define for resources, infrastructures or deployments. This properties are provisioner or deployment specific and they should document them when they expect any.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "description": "Unique name for the infrastructure",
+                    "type": "string"
+                  },
+                  "provider": {
+                    "description": "CloudProviderInfo contains information about a cloud provider",
+                    "type": "object",
+                    "required": [
+                      "api_endpoint"
+                    ],
+                    "properties": {
+                      "api_endpoint": {
+                        "description": "Endpoint to use for this infrastructure",
+                        "type": "string"
+                      },
+                      "api_type": {
+                        "description": "Type of the infrastructure. i.e AWS, Cloudsigma, GCP or Edge",
+                        "type": "string"
+                      },
+                      "credentials": {
+                        "description": "Credentials to access the cloud provider. Either this or secret_id is mandatory. Each cloud provider should define the format of this element.",
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "object"
+                          ]
+                        }
+                      },
+                      "secret_id": {
+                        "description": "Secret identifier to use to log in to the infrastructure manager.",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "resources": {
+                    "description": "List of resources to deploy",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "title": "ResourceType has information about a node that needs to be created by a deployer.",
+                      "required": [
+                        "name",
+                        "disk"
+                      ],
+                      "properties": {
+                        "cores": {
+                          "description": "Number of cores. Ignored if type is provided",
+                          "type": "integer"
+                        },
+                        "cpu": {
+                          "description": "CPU speed in Mhz. Ignored if type is provided",
+                          "type": "integer"
+                        },
+                        "disk": {
+                          "description": "Boot disk size in Mb",
+                          "type": "integer"
+                        },
+                        "drives": {
+                          "description": "List of data drives to attach to this VM",
+                          "type": "array",
+                          "items": {
+                            "description": "Drive holds information about a data drive attached to a node",
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "size"
+                            ],
+                            "properties": {
+                              "name": {
+                                "description": "Unique name for the drive",
+                                "type": "string"
+                              },
+                              "size": {
+                                "description": "Size of the disk in Mb",
+                                "type": "integer"
+                              },
+                              "type": {
+                                "description": "Type of the drive. It can be \"SSD\" or \"HDD\"",
+                                "type": "string",
+                                "pattern": "SSD|HDD",
+                                "example": "SSD"
+                              }
+                            }
+                          }
+                        },
+                        "extra_properties": {
+                          "type": "object",
+                          "title": "ExtraPropertiesType represents extra properties to define for resources, infrastructures or deployments. This properties are provisioner or deployment specific and they should document them when they expect any.",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        },
+                        "image_id": {
+                          "description": "Boot image ID to use",
+                          "type": "string"
+                        },
+                        "ip": {
+                          "description": "IP to assign this VM. In case it's not specified, the first available one will be used.",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Suffix for the hostname. The real hostname will be formed of the infrastructure name + resource name",
+                          "type": "string"
+                        },
+                        "ram": {
+                          "description": "RAM quantity in Mb. Ignored if type is provided",
+                          "type": "integer"
+                        },
+                        "role": {
+                          "description": "Role that this VM plays. In case of a Kubernetes deployment at least one \"master\" is needed.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type of the VM to create i.e. n1-small",
+                          "type": "string",
+                          "example": "n1-small"
+                        }
+                      }
+                    }
+                  },
+                  "type": {
+                    "description": "Type of the infrastructure: Cloud or Edge: Cloud infrastructures mean that the resources will be VMs that need to be instantiated. Edge means that the infrastructure is already in place and its information will be added to the database but no further work will be done by a deployer.",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "name": {
+              "description": "Name for this deployment",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "EXPOSED_API": {
+      "$comment": "The fifth section",
+      "title": "CAF API",
+      "type": "object",
+      "description": "The CAF RESTful API of the VDC, written according to the current version (3.0.2) of the OpenAPI Specification (OAS), but also adapted to DITAS requirements",
+      "properties": {
+        "paths": {
+          "type": "object",
+          "patternProperties": {
+            "^/": {
+              "type": "object",
+              "patternProperties": {
+                "^get$": {
+                  "allOf": [
+                    {
+                      "$ref": "#/properties/EXPOSED_API/definitions/method"
+                    },
+                    {
+                      "properties": {
+                        "parameters": {}
+                      }
+                    }
+                  ]
+                },
+                "^post$": {
+                  "allOf": [
+                    {
+                      "$ref": "#/properties/EXPOSED_API/definitions/method"
+                    },
+                    {
+                      "properties": {
+                        "requestBody": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "$ref": "#/properties/EXPOSED_API/definitions/content"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "requestBody"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "definitions": {
+        "method": {
+          "title": "An Exposed VDC Method",
+          "type": "object",
+          "description": "Corresponds to the Operation Object defined in the OpenAPI Specification (OAS) version 3.0.2",
+          "properties": {
+            "summary": {},
+            "operationId": {},
+            "responses": {
+              "type": "object",
+              "patternProperties": {
+                "^200$|^201$": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "$ref": "#/properties/EXPOSED_API/definitions/content"
+                    }
+                  },
+                  "required": [
+                    "content"
+                  ]
+                }
+              }
+            },
+            "x-data-sources": {
+              "type": "array",
+              "description": "An array that contains all the data sources that are accessed by the method",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "x-iam-roles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "summary",
+            "operationId",
+            "responses",
+            "x-data-sources"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "patternProperties": {
+            "^application/json$": {
+              "type": "object",
+              "properties": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "schema"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "INTERNAL_STRUCTURE",
+    "DATA_MANAGEMENT",
+    "ABSTRACT_PROPERTIES",
+    "COOKBOOK_APPENDIX",
+    "EXPOSED_API"
+  ]
+}
