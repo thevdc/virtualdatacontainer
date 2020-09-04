@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.webp">
+	<title>DITAS - Blueprint Editor</title>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../assets/libs/select2/dist/css/select2.min.css">	
+	<!-- Custom CSS -->
+	<link href="../css/style.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/stergios-style.css" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+	<!-- ============================================================== -->
+	<!-- Preloader - style you can find in spinners.css -->
+	<!-- ============================================================== -->
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper">
+		<!-- ============================================================== -->
+		<!-- Topbar header - style you can find in pages.scss -->
+		<!-- ============================================================== -->
+		<header class="topbar" data-navbarbg="skin5">
+			<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+				<div class="navbar-header" data-logobg="skin5">
+					<a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+
+					<a class="navbar-brand" href="index.html">
+						<b class="logo-icon">
+							<img src="../assets/images/ditas-logo-icon.png" alt="homepage" class="light-logo" width="48" height="50" />
+						</b>
+						<span class="logo-text m-l-10">
+							 <img src="../assets/images/ditas-logo-text.png" alt="homepage" class="light-logo m-t-5" width="100" />
+						</span>
+					</a>
+					<a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+				</div>
+				<div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+					<!-- ============================================================== -->
+					<!-- toggle and nav items -->
+					<!-- ============================================================== -->
+					<ul class="navbar-nav float-left mr-auto">
+						<li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>                        
+					</ul>
+
+					<ul class="navbar-nav float-right hide">
+
+						<!-- ============================================================== -->
+						<!-- User profile and search -->
+						<!-- ============================================================== -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/ditas-logo-icon.png" alt="user" class="rounded-circle" width="31"></a>
+							<div class="dropdown-menu dropdown-menu-right user-dd animated">
+								<a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+								<a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+								<a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+								<div class="dropdown-divider"></div>
+								<div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+							</div>
+						</li>
+						<!-- ============================================================== -->
+						<!-- User profile and search -->
+						<!-- ============================================================== -->
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- ============================================================== -->
+		<!-- End Topbar header -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- ============================================================== -->
+		<aside class="left-sidebar" data-sidebarbg="skin5">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav" class="p-t-30">
+						<li id="vdc-internal-structure-menu" class="sidebar-item selected" data-section-id="vdc-internal-structure-div"> <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Internal Structure</span><i class="mdi mdi-alert-circle"></i></a></li>
+						<li id="vdc-data-managment-menu" class="sidebar-item" data-section-id="vdc-data-managment-div"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Data Managment</span><i class="mdi mdi-alert-circle"></i></a></li>
+						<li class="sidebar-item disabled"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Abstract Properties</span><i class="mdi mdi-alert-circle hide"></i></a></li>
+						<li id="vdc-cookbook-appendix-menu" class="sidebar-item" data-section-id="vdc-cookbook-appendix-div"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Cookcook Appendix</span><i class="mdi mdi-alert-circle"></i></a></li>
+						<li id="vdc-exposed-api-menu" class="sidebar-item" data-section-id="vdc-exposed-api-div"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Exposed API</span><i class="mdi mdi-alert-circle"></i></a></li>
+						<li id="vdc-export-blueprint-menu" class="sidebar-item disabled"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Export Blueprint</span></a></li>
+					</ul>
+				</nav>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+
+		<div class="page-wrapper internal-structure">
+			 
+			<div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-12 no-block align-items-center">
+						<h4 id="vdc-section-title" class="">Internal Structure</h4>
+						<h5 id="vdc-section-subtitle" class="">General information about the VDC Blueprint</h4>
+					</div>
+				</div>
+			</div>
+
+			<div id="vdc-editor" class="container-fluid">
+				<div id="vdc-internal-structure-div" class="row masonry-row">
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-overview" class="card vdc-object" data-type="json" data-key="Overview" data-save-source="form" data-add-source="form">
+							<form class="form-horizontal">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Overview</h5>
+									<div class="form-group m-t-20" data-key="name" data-type="string" data-validation="required">
+										<label>Name<br><small class="">This field should contain the name of the VDC Blueprint</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											Name is required
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="description" data-type="string" data-validation="required">
+										<label>Description<br><small class="">This field should contain a short description of the VDC Blueprint</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											Description is required
+										</div>
+									</div>
+									<div id="vdc-overview-tags" class="form-group m-t-20 vdc-array" data-key="tags" data-type="array" data-validation="required,min-1,uniqueItems" data-validation-unique-params="method_id" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-overview-tags-array-container">
+										<div id="vdc-overview-tags-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-overview-tags-array-container">
+											<label>Tags <br><small class="">Each element of this array should contain some keywords that describe the functionality of each one exposed VDC method</small></label>
+											<div class="form-group m-t-10" data-key="method_id" data-type="string" data-validation="required">
+												<label>Method ID<br><small>The ID (operationID) of the method (as indicated in the EXPOSED_API field)</small></label>
+												<select class="select2 form-control custom-select method-select" style="width: 100%; height:36px;">
+													<option value="">Please import API first</option>
+												</select>
+												<div class="invalid-feedback">
+													Method ID is required
+												</div>
+											</div>
+
+											<div id="vdc-overview-tags-item-tags" class="form-group m-t-20 vdc-array" data-key="tags" data-type="array" data-validation="required,min-1,uniqueItems" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-overview-tags-item-tags-container" data-reverse-if-child="true" data-original-item-type="string">
+												<label>Tags</label>
+												<div class="input-group" data-key="" data-type="string" data-validation="">
+													<input type="text" class="form-control enter-add-to-array" placeholder="" aria-describedby="vdc-overview-tags-item-tags-add-btn" data-enter-id="vdc-overview-tags-item-tags-add-btn">
+													<div class="input-group-append">
+														<button id="vdc-overview-tags-item-tags-add-btn" type="button" class="btn btn-outline btn-outline-success btn-add" data-section-id="vdc-overview-tags-item-tags" data-vdc-container-id="vdc-overview-tags-item-tags-container"><i class="mdi mdi-plus"></i></button>
+													</div>
+													<div class="invalid-feedback">
+														Add at least one Tag
+													</div>
+												</div>
+
+												<div id="vdc-overview-tags-item-tags-container" data-reverse-if-child="true" class="vdc-array-container" data-type="input" data-key="tags" data-original-type="string" data-original-item-type="string" data-validation="min-1"></div>
+											</div>
+
+											<div class="right">
+												<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-overview-tags" data-vdc-container-id="vdc-overview-tags-array-container">Add Method Tag Object</button>
+											</div>
+											<div id="vdc-overview-tags-array-container" class="form-control vdc-array-container" data-section-id="vdc-overview-tags" data-key="tags" data-type="pre" data-original-type="array" data-original-item-type="json" data-validation="required,min-1" style="border: none;"  data-save-source="pre" data-add-source="form"></div>
+											<div class="invalid-feedback">
+												You need to add at least 1 item
+											</div>
+										</div>
+
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save  btn-text" data-section-id="vdc-overview">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-data-sources" class="card vdc-array" data-type="array" data-key="Data_Sources" data-validation="uniqueItems" data-validation-unique-params="id" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-data-sources-array-container" data-reverse-if-child="true">
+							<form class="form-horizontal" data-type="json" data-save-source="pre" data-add-source="form">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Data Sources</h5>
+									<div class="form-group m-t-20" data-key="id" data-type="string" data-validation="required">
+										<label>ID</label>
+										<input type="text" class="form-control date-inputmask" placeholder="A unique identifier">
+										<div class="invalid-feedback">ID is required</div>
+									</div>
+									<div class="form-group m-t-20" data-key="description" data-type="string">
+										<label>Description</label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+									</div>
+									<div class="form-group m-t-20" data-key="location" data-type="enum">
+										<label>Location</label>
+										<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+											<option value="">Select</option>
+											<option value="cloud">Cloud</option>
+											<option value="edge">Edge</option>
+										</select>
+									</div>
+									<div class="form-group m-t-20" data-key="class" data-type="enum">
+										<label>Class</label>
+										<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+											<option value="">Select</option>
+											<option value="relational database">Relational Database</option>
+											<option value="object storage">Object Storage</option>
+											<option value="time-series database">Time-Series Database</option>
+											<option value="api">API</option>
+											<option value="data stream">Data Stream</option>
+										</select>
+									</div>
+									<div class="form-group m-t-20" data-key="type" data-type="enum">
+										<label>Type</label>
+										<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+											<option value="">Select</option>
+											<option value="MySQL">MySQL</option>
+											<option value="Minio">Minio</option>
+											<option value="InfluxDB">InfluxDB</option>
+											<option value="rest">REST</option>
+											<option value="other">Other</option>
+										</select>
+									</div>
+									<div id="vdc-data-sources-patameters" class="form-group m-t-20 json-object-param inline-add" data-key="parameters" data-type="json" data-save-source="pre" data-add-source="pre">
+										<label class="d-block">Parameters<br><small class="">Connection parameters (JSON Object)</small></label>
+										<div id="vdc-data-sources-patameters-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-data-sources-patameters"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Parameters" data-subtitle="JSON Object" data-result-id="vdc-data-sources-patameters"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Parameters" data-subtitle="JSON Object" data-result-id="vdc-data-sources-patameters"><i class="mdi mdi-plus"></i></button>
+									</div>
+									<div id="vdc-data-sources-schema" class="form-group m-t-20 json-object-param inline-add" data-key="schema" data-type="json" data-save-source="pre" data-add-source="pre">
+										<label class="d-block">Schema<br><small class="">JSON Object</small></label>
+										<div id="vdc-data-sources-schema-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-data-sources-schema"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Schema" data-subtitle="JSON Object" data-result-id="vdc-data-sources-schema"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Schema" data-subtitle="JSON Object" data-result-id="vdc-data-sources-schema"><i class="mdi mdi-plus"></i></button>
+									</div>
+									<div class="right">
+										<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-data-sources" data-vdc-container-id="vdc-data-sources-array-container">Add Data Source</button>
+									</div>
+
+									<div id="vdc-data-sources-array-container" class="form-control" data-key="Data_Sources" data-type="pre" data-original-type="array" data-original-item-type="json" data-validation="min-1"  data-save-source="pre" data-add-source="form" data-invalid-text="Data Source ID must be unique" style="border: none;"></div>
+									<div class="invalid-feedback">
+										You need to add at least 1 item
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-data-sources">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-12 col-lg-12 masonry-item">
+						<div id="vdc-method-inputs" class="card vdc-array" data-type="array" data-key="" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-method-inputs-array-container" data-validation="uniqueItems" data-validation-unique-params="method_id" data-reverse-if-child="true">
+							<form class="form-horizontal" data-type="json" data-save-source="pre" data-add-source="form">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Method Inputs<br><small>This field contains the part of the data source that each method needs to be executed</small></h5>
+									<div class="form-group m-t-20" data-key="method_id" data-type="string" data-validation="required">
+										<label>Method ID<br><small>The id (operationId) of the method (as indicated in the EXPOSED_API.paths field)</small></label>
+										<select class="select2 form-control custom-select method-select" style="width: 100%; height:36px;">
+											<option value="">Please import API first</option>
+										</select>
+									</div>
+
+									<div id="vdc-method-inputs-datasources" class="card vdc-array" data-type="array" data-key="dataSources" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-method-inputs-datasources-array-container" data-validation="uniqueItems" data-validation-unique-params="dataSource_id" data-reverse-if-child="true">
+										<div id="vdc-method-inputs-datasources-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-method-inputs-datasources-array-container">
+											<div class="card-body">
+												<h5 class="card-title m-b-0">Data Sources<br><small>The list of data sources required by the method</small></h5>
+
+												<div class="form-group m-t-20" data-key="dataSource_id" data-type="enum" data-validation="required">
+													<label>Data Source ID</label>
+													<select class="select2 form-control custom-select datasource-select" style="width: 100%; height:36px;">
+														<option value="">Please Declare Data Sources first</option>
+													</select>
+													<div class="invalid-feedback">ID is required</div>
+												</div>
+
+												<div class="form-group m-t-20" data-key="dataSource_type" data-type="enum">
+													<label>Data Source Type<br><small>The type of the data sources (relational/not_relational/object)</small></label>
+													<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+														<option value="">Select</option>
+														<option value="relational">Relational</option>
+														<option value="not_relational">Not Relational</option>
+														<option value="object">Object</option>
+													</select>
+												</div>
+
+												<button id="vdc-method-inputs-datasources-database-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-method-inputs-datasources-database" >Add Database</button>
+
+												<div id="vdc-method-inputs-datasources-database" class="card vdc-array hide" data-type="array" data-key="database" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-method-inputs-datasources-database-array-container" data-validation="uniqueItems" data-validation-unique-params="database_id" data-reverse-if-child="true">
+													<div id="vdc-method-inputs-datasources-database-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-method-inputs-datasources-database-array-container">
+														<div class="card-body">
+															<h5 class="card-title m-b-0">Databases<br><small>The list of databases required by a method in a data source</small></h5>
+
+															<div class="form-group m-t-20" data-key="database_id" data-type="string" data-validation="required">
+																<label>Database ID<br><small>The ID of the database</small></label>
+																<input type="text" class="form-control date-inputmask" placeholder="">
+																<div class="invalid-feedback">ID is required</div>
+															</div>
+
+															<button id="vdc-method-inputs-datasources-database-tables-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-method-inputs-datasources-database-tables">Add Table</button>
+
+															<div id="vdc-method-inputs-datasources-database-tables" class="card vdc-array hide" data-type="array" data-key="tables" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-method-inputs-datasources-database-tables-array-container" data-validation="uniqueItems" data-validation-unique-params="table_id" data-reverse-if-child="true">
+																<div id="vdc-method-inputs-datasources-database-tables-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-method-inputs-datasources-database-tables-array-container">
+																	<div class="card-body">
+																		<h5 class="card-title m-b-0">Tables<br><small>The list of tables/collections required by a method in a Data Source</small></h5>
+
+																		<div class="form-group m-t-20" data-key="table_id" data-type="string" data-validation="required">
+																			<label>Table ID<br><small>The id of the tables/collection</small></label>
+																			<input type="text" class="form-control date-inputmask" placeholder="">
+																			<div class="invalid-feedback">ID is required</div>
+																		</div>
+
+																		<button id="vdc-method-inputs-datasources-database-tables-columns-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-method-inputs-datasources-database-tables-columns" >Add Column</button>
+
+																		<div id="vdc-method-inputs-datasources-database-tables-columns" class="card vdc-array hide" data-type="array" data-key="columns" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-method-inputs-datasources-database-tables-columns-array-container"  data-validation="uniqueItems" data-validation-unique-params="column_id" data-reverse-if-child="true">
+																			<div id="vdc-method-inputs-datasources-database-tables-columns-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-method-inputs-datasources-database-tables-columns-array-container">
+																				<div class="card-body">
+																					<h5 class="card-title m-b-0">Columns</h5>
+
+																					<div class="form-group m-t-20" data-key="column_id" data-type="string" data-validation="required">
+																						<label>Column ID<br><small>The ID of the column/field</small></label>
+																						<input type="text" class="form-control date-inputmask" placeholder="">
+																						<div class="invalid-feedback">ID is required</div>
+																					</div>
+
+																					<div class="form-group row  m-t-20" data-key="computeDataUtility" data-type="bool">
+																						<label class="col-md-3">Compute Data Utility</label>
+																						<div class="col-md-9">
+																							<div class="custom-control custom-checkbox mr-sm-2">
+																								<input type="checkbox" class="custom-control-input" id="vdc-method-inputs-datasources-database-tables-columns-computeDataUtility">
+																								<label class="custom-control-label" for="vdc-method-inputs-datasources-database-tables-columns-computeDataUtility">True if it is required for data utility computation</label>
+																							</div>
+																						</div>
+																					</div>
+
+																					<div class="right">
+																						<button type="button" class="btn btn-success btn-add btn-text" data-section-id="vdc-method-inputs-datasources-database-tables-columns" data-vdc-container-id="vdc-method-inputs-datasources-database-tables-columns-array-container">Save Column</button>
+																					</div>
+
+																					<div id="vdc-method-inputs-datasources-database-tables-columns-array-container" class="form-control vdc-array-container" data-key="columns" data-type="pre" data-original-type="array" data-original-item-type="json"  data-save-source="pre" data-add-source="form" style="border: none;"></div>
+
+																				</div>
+																			</div>
+																		</div>
+																		<div class="right">
+																			<button type="button" class="btn btn-success btn-add btn-text" data-section-id="vdc-method-inputs-datasources-database-tables" data-vdc-container-id="vdc-method-inputs-datasources-database-tables-array-container" data-hide-id="vdc-method-inputs-datasources-database-tables-columns" data-show-id="vdc-method-inputs-datasources-database-tables-columns-add-btn">Save Table</button>
+																		</div>
+
+																		<div id="vdc-method-inputs-datasources-database-tables-array-container" class="form-control vdc-array-container" data-key="tables" data-type="pre" data-original-type="array" data-original-item-type="json"  data-save-source="pre" data-add-source="form" style="border: none;"></div>
+
+																	</div>
+																</div>
+															</div>
+
+
+															<div class="right">
+																<button type="button" class="btn btn-success btn-add btn-text" data-section-id="vdc-method-inputs-datasources-database" data-vdc-container-id="vdc-method-inputs-datasources-database-array-container" data-hide-id="vdc-method-inputs-datasources-database-tables" data-show-id="vdc-method-inputs-datasources-database-tables-add-btn">Save Database</button>
+															</div>
+
+															<div id="vdc-method-inputs-datasources-database-array-container" class="form-control vdc-array-container" data-key="database" data-type="pre" data-original-type="array" data-original-item-type="json"  data-save-source="pre" data-add-source="form" style="border: none;"></div>
+
+														</div>
+													</div>
+												</div>
+
+												<div class="right">
+													<button type="button" class="btn btn-success btn-add btn-text" data-section-id="vdc-method-inputs-datasources" data-vdc-container-id="vdc-method-inputs-datasources-array-container" data-hide-id="vdc-method-inputs-datasources-database" data-show-id="vdc-method-inputs-datasources-database-add-btn">Save DataSource</button>
+												</div>
+
+												<div id="vdc-method-inputs-datasources-array-container" class="form-control vdc-array-container" data-key="dataSources" data-type="pre" data-original-type="array" data-original-item-type="json"  data-save-source="pre" data-add-source="form" style="border: none;"></div>
+
+											</div>
+										</div>
+									</div>
+
+
+									<div class="right">
+										<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-method-inputs" data-vdc-container-id="vdc-method-inputs-array-container">Add Method</button>
+									</div>
+
+									<div id="vdc-method-inputs-array-container" class="form-control vdc-array-container" data-key="Methods" data-container-key="Methods_Input" data-type="pre" data-original-type="array" data-original-item-type="json"  data-save-source="pre" data-add-source="form" data-validation="required-save" data-ignore-if-empty="true" style="border: none;"></div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-method-inputs">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-flow" class="card vdc-object" data-type="json" data-key="Flow" data-save-source="form" data-add-source="form" data-ignore-if-empty="true">
+							<form class="form-horizontal">
+								<div class="card-body">
+									<h5 class="card-title m-b-5">Flow</h5>
+									<h6 class="card-title m-b-0">The data flow that implements the VDC</h5>
+									<div class="form-group m-t-20" data-key="platform" data-type="enum">
+										<label>Platform</label>
+										<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+											<option value="">Select</option>
+											<option value="Spark">Spark</option>
+											<option value="Node-RED">Node-RED</option>
+										</select>
+									</div>
+
+									<div id="vdc-flow-patameters" class="form-group m-t-20 flow-parameters-object json-object-param inline-add hide" data-key="parameters" data-type="json" data-save-source="pre" data-add-source="pre" data-return-if-visible="true">
+										<label class="d-block">Parameters<br><small class="">JSON Object</small></label>
+
+										<div id="vdc-flow-patameters-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;" data-return-if-visible="true">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-flow-patameters"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Parameters" data-subtitle="JSON Object" data-result-id="vdc-flow-patameters"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Parameters" data-subtitle="JSON Object" data-result-id="vdc-flow-patameters"><i class="mdi mdi-plus"></i></button>
+									</div>
+									<div id="vdc-flow-source-code" class="form-group m-t-20 flow-source-code-object json-object-param inline-add hide" data-key="source_code" data-type="any" data-save-source="pre" data-add-source="pre" data-return-if-visible="true">
+										<label class="d-block">Source Code</label>
+										<div id="vdc-flow-source-code-container" class="form-control" data-key="" data-type="pre" data-original-type="any" data-original-item-type="any" data-save-source="pre" data-add-source="pre" data-return-if-visible="true" style="border: none;">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-flow-source-code"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Source Code" data-result-id="vdc-flow-source-code" data-editor-mode="any"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Source Code" data-result-id="vdc-flow-source-code" data-editor-mode="any"><i class="mdi mdi-plus"></i></button>
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-flow">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-identity-access-management" class="card vdc-object" data-key="Identity_Access_Management" data-type="json" data-save-source="form" data-add-source="form">
+							<form class="form-horizontal">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Identity Access Management</h5>
+									<div class="form-group m-t-20" data-key="jwks_uri" data-type="string" data-validation="required">
+										<label>JWKS URI</label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											JWKS URI is required
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="iam_endpoint" data-type="string" data-validation="required">
+										<label>IAM Endpoint</label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											IAM Endpoint is required
+										</div>
+									</div>
+									<div id="vdc-identity-access-management-roles" class="form-group m-t-20 vdc-array" data-key="roles" data-type="array" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-identity-access-management-roles-array-container" data-validation="min-1,uniqueItems" data-original-item-type="string" data-reverse-if-child="true">
+										<label>Roles</label>
+										<div class="input-group" data-type="string">
+											<input type="text" class="form-control enter-add-to-array" placeholder="" aria-describedby="vdc-identity-access-management-role-add-btn" data-enter-id="vdc-identity-access-management-role-add-btn">
+											<div class="input-group-append">
+												<button id="vdc-identity-access-management-role-add-btn" type="button" class="btn btn-outline btn-outline-success btn-add" data-section-id="vdc-identity-access-management-roles" data-vdc-container-id="vdc-identity-access-management-roles-array-container"><i class="mdi mdi-plus"></i></button>
+											</div>
+											<div class="invalid-feedback">
+												Add at least one Role
+											</div>
+										</div>
+
+										<div id="vdc-identity-access-management-roles-array-container" data-type="input" data-key="roles" data-original-type="string" data-validation="min-1,uniqueItems" data-original-item-type="string"></div>
+									</div>
+
+									<div class="m-b-10">
+										<button id="vdc-identity-access-management-provider-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-identity-access-management-provider" data-toggle-siblings="true">Add Provider</button>
+
+										<button id="vdc-identity-access-management-provider-remove-btn" type="button" class="btn btn-danger btn-hide btn-text hide" data-section-id="vdc-identity-access-management-provider" data-toggle-siblings="true">Remove Provider</button>
+									</div>
+
+									<div id="vdc-identity-access-management-provider" class="card vdc-array hide" data-type="array" data-key="provider" data-validation="min-1" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-identity-access-management-provider-array-container" >
+										<div id="vdc-identity-access-management-provider-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-testing-output-data-array-container">
+											<label class="card-title m-b-0 m-t-20">Provider</label>
+											<div class="form-group m-t-10" data-key="name" data-type="string" data-validation="required">
+												<label>Name</label>
+												<input type="text" class="form-control date-inputmask" placeholder="">
+												<div class="invalid-feedback">
+													Name is required
+												</div>
+											</div>
+											<div class="form-group m-t-20" data-key="uri" data-type="string" data-validation="required">
+												<label>URI</label>
+												<input type="text" class="form-control date-inputmask" placeholder="">
+												<div class="invalid-feedback">
+													URI is required
+												</div>
+											</div>
+											<div class="form-group m-t-20" data-key="type" data-type="string">
+												<label>Type</label>
+												<input type="text" class="form-control date-inputmask" placeholder="">
+											</div>
+											<div class="form-group m-t-20" data-key="loginPortal" data-type="string">
+												<label>Login Portal</label>
+												<input type="text" class="form-control date-inputmask" placeholder="">
+											</div>
+
+											<div class="right">
+												<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-identity-access-management-provider" data-vdc-container-id="vdc-identity-access-management-provider-array-container">Add Provider</button>
+											</div>
+											<div id="vdc-identity-access-management-provider-array-container" class="form-control vdc-array-container" data-key="provider" data-type="pre" data-original-type="array" data-original-item-type="json" data-validation="min-1" style="border: none;"  data-save-source="pre" data-add-source="form"></div>
+										</div>
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-identity-access-management">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-testing-output-data" class="card vdc-array" data-type="array" data-key="Testing_Output_Data" data-validation="uniqueItems,min-1" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-testing-output-data-array-container" data-validation-unique-params="method_id">
+							<form id="vdc-testing-output-data-item" class="form-horizontal" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-testing-output-data-array-container">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Testing Output Data</h5>
+									<div class="form-group m-t-20" data-key="method_id" data-type="string" data-validation="required">
+										<label>Method ID<br><small class="">The ID (Operation ID) of the method (as indicated in the EXPOSED_API.paths field)</small></label>
+										<select class="select2 form-control custom-select method-select" style="width: 100%; height:36px;">
+											<option value="">Please import API first</option>
+										</select>
+										<div class="invalid-feedback">
+											Method ID is required
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="zip_data" data-type="string" data-validation="required">
+										<label>ZIP Data<br><small class="">The URI to the zip testing output data for each one exposed VDC method</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											ZIP Data is required
+										</div>
+									</div>
+									<div class="right">
+										<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-testing-output-data" data-vdc-container-id="vdc-testing-output-data-array-container">Add Item</button>
+									</div>
+									<div id="vdc-testing-output-data-array-container" class="form-control vdc-array-container" data-key="Testing_Output_Data" data-type="pre" data-original-type="array" data-original-item-type="json" data-validation="required,min-1" style="border: none;"  data-save-source="pre" data-add-source="form"></div>
+									<div class="invalid-feedback">
+										You need to add at least 1 item
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-testing-output-data">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-dal-images" class="card vdc-object" data-type="json" data-key="DAL_Images" data-save-source="form" data-add-source="form" data-ignore-if-empty="true">
+							<form id="vdc-dal-images-item" class="form-horizontal" data-key-origin-id="vdc-dal-images-item-id" data-type="json" data-save-source="form" data-add-source="form">
+								<div class="card-body">
+									<h5 class="card-title m-b-5">DAL Images</h5>
+									
+									<div id="vdc-dal-images-item-id" class="form-group m-t-20" data-key="" data-type="string" data-validation="required">
+										<label>DAL Image Name</label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											DAL Image Name is required
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="original_ip" data-type="string" data-validation="required">
+										<label>Original IP<br><small class="">IP of the original DAL's location</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											IP is required
+										</div>
+									</div>
+
+									<label>Images</label>
+
+									<div id="vdc-dal-images-image" class="form-group m-t-20 form-item-container" data-type="json" data-save-source="form" data-add-source="form" data-reverse-if-child="true" data-container-key="images" data-key="default">
+										
+										<div class="form-group m-t-20" data-key="image" data-type="string" data-validation="required">
+											<label>Image Name<br><small class="">Image name in the standard format [group]/<image_name>:[release]</small></label>
+											<input type="text" class="form-control date-inputmask" placeholder="">
+											<div class="invalid-feedback">
+												Image Name is required
+											</div>
+										</div>
+										<div class="form-group m-t-20" data-key="internal_port" data-type="int">
+											<label>Internal Port<br><small class="">Port in which the docker image is listening internally. Two images inside the same ImageSet can't have the same internal port.</small></label>
+											<input type="text" class="form-control date-inputmask" placeholder="">
+											<div class="invalid-feedback">
+												Internal Port must be an Integer
+											</div>
+										</div>
+										<div class="form-group m-t-20" data-key="external_port" data-type="int" data-validation="min-30000,max-32767">
+											<label>External Port<br><small class="">Port in which this image must be exposed. It must be unique across all images in all the ImageSets defined in this blueprint. Due to limitations in k8s, the port range must be bewteen 30000 and 32767</small></label>
+											<input type="text" class="form-control date-inputmask" placeholder="">
+											<div class="invalid-feedback">
+												External Port must be bewteen 30000 and 32767
+											</div>
+										</div>
+
+										<div id="vdc-dal-images-image-extra-properties" class="form-group m-t-20 json-object-param inline-add" data-key="" data-type="json" data-save-source="pre" data-add-source="pre">
+											<label class="d-block">Extra Properties<br><small class="">JSON Object</small></label>
+
+											<div id="vdc-dal-images-image-extra-properties-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;" data-return-if-visible="true">
+												<pre class="hide form-control data-type-json"></pre>
+											</div>
+
+											<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-dal-images-image-extra-properties"><i class="mdi mdi-delete"></i></button>
+											<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-dal-images-image-extra-properties" data-forbidden-keys="image,internal_port,external_port"><i class="mdi mdi-pencil"></i></button>
+											<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-dal-images-image-extra-properties" data-forbidden-keys="image,internal_port,external_port"><i class="mdi mdi-plus"></i></button>
+										</div>
+										
+									</div>
+
+									<div id="vdc-dal-images-extra-properties" class="form-group m-t-20 json-object-param inline-add" data-key="" data-type="json" data-save-source="pre" data-add-source="pre">
+										<label class="d-block">Extra Properties<br><small class="">JSON Object</small></label>
+
+										<div id="vdc-dal-images-image-extra-properties-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;" data-return-if-visible="true">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-dal-images-image-extra-properties"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-dal-images-image-extra-properties" data-forbidden-keys="images,original_ip"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-dal-images-image-extra-properties" data-forbidden-keys="images,original_ip"><i class="mdi mdi-plus"></i></button>
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-dal-images">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="vdc-vdc-images" class="card vdc-object" data-type="json" data-key="VDC_Images" data-save-source="form" data-add-source="form" data-ignore-if-empty="true">							
+							<form id="vdc-vdc-images-item" class="form-horizontal" data-key-origin-id="vdc-vdc-images-item-id" data-type="json" data-save-source="form" data-add-source="form" >
+							<!-- <form id="vdc-vdc-images-item" class="form-horizontal" >								 -->
+								<div class="card-body">
+									<h5 class="card-title m-b-5">VDC Images</h5>
+																		
+									
+									<div id="vdc-vdc-images-item-id" class="form-group m-t-20" data-type="string" data-default-value="caf" data-validation="required">
+										<label>Image Name</label>
+										<input type="text" class="form-control date-inputmask" placeholder="" value="caf">
+										<div class="invalid-feedback">
+											Image name is required
+										</div>
+									</div>
+															
+									<div class="form-group m-t-20" data-key="image" data-type="string" data-validation="required">
+										<label>Image<br><small class="">Image name in the standard format [group]/<image_name>:[release]</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											Image is required
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="internal_port" data-type="int">
+										<label>Internal Port<br><small class="">Port in which the docker image is listening internally. Two images inside the same ImageSet can't have the same internal port.</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											Internal Port must be an Integer
+										</div>
+									</div>
+									<div class="form-group m-t-20" data-key="external_port" data-type="int" data-validation="min-30000,max-32767">
+										<label>External Port<br><small class="">Port in which this image must be exposed. It must be unique across all images in all the ImageSets defined in this blueprint. Due to limitations in k8s, the port range must be bewteen 30000 and 32767</small></label>
+										<input type="text" class="form-control date-inputmask" placeholder="">
+										<div class="invalid-feedback">
+											External Port must be bewteen 30000 and 32767
+										</div>
+									</div>
+
+									<div id="vdc-vdc-images-image-extra-properties" class="form-group m-t-20 json-object-param inline-add" data-key="" data-type="json" data-save-source="pre" data-add-source="pre" data-ignore-if-empty="true">
+										<label class="d-block">Extra Properties<br><small class="">JSON Object</small></label>
+
+										<div id="vdc-vdc-images-image-extra-properties-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" data-save-source="pre" data-add-source="pre" style="border: none;" data-return-if-visible="true">
+											<pre class="hide form-control data-type-json"></pre>
+										</div>
+
+										<button type="button" class="btn btn-danger right hide btn-delete" data-result-id="vdc-vdc-images-image-extra-properties"><i class="mdi mdi-delete"></i></button>
+										<button type="button" class="btn btn-success right hide btn-edit" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-vdc-images-image-extra-properties" data-forbidden-keys="image,internal_port,external_port"><i class="mdi mdi-pencil"></i></button>
+										<button type="button" class="btn btn-success right btn-add" data-toggle="modal" data-target="#jsonObjectModal" data-title="Extra Properties" data-subtitle="JSON Object" data-result-id="vdc-vdc-images-image-extra-properties" data-forbidden-keys="image,internal_port,external_port"><i class="mdi mdi-plus"></i></button>
+									</div>
+
+
+									<!-- <div class="right"> -->
+										<!-- <button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-vdc-images-item" data-vdc-container-id="vdc-vdc-images-item-container">Add VDC Image</button> -->
+									<!-- </div> -->
+
+									<!-- <div id="vdc-vdc-images-item-container" class="form-control" data-key="" data-type="pre" data-original-type="json" data-original-item-type="json" style="border: none;"  data-save-source="pre" data-add-source="form"></div> -->
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-vdc-images">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="vdc-data-managment-div" class="row masonry-row hide">
+
+					<div class="col-md-12 col-lg-12 masonry-item">
+						<div id="vdc-data-managment" class="card vdc-array" data-type="array" data-key="DATA_MANAGEMENT" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-data-managment-array-container" data-validation="uniqueItems" data-validation-unique-params="method_id" data-reverse-if-child="true">
+							<form id="vdc-data-managment-item" class="form-horizontal" data-type="json" data-save-source="form" data-add-source="form" data-vdc-container-id="vdc-data-managment-array-container">
+								<div class="card-body">
+									<div class="form-group m-t-20" data-key="method_id" data-type="string" data-validation="required">
+										<label>Method ID<br><small class="">The ID (Operation ID) of the method (as indicated in the EXPOSED_API.paths field)</small></label>
+										<select class="select2 form-control custom-select method-select" style="width: 100%; height:36px;">
+											<option value="">Please import API first</option>
+										</select>
+										<div class="invalid-feedback">
+											Method ID is required
+										</div>
+									</div>
+
+									<div id="vdc-data-managment-attributes" class="hide" data-type="json" data-save-source="form" data-add-source="form" data-key="attributes">
+										<label class="card-title m-b-20 m-t-10">Attributes<br><small>Goal Trees</small></label>
+										<div id="vdc-data-managment-attributes-data-utility" class="card vdc-array col-md-12 form-item-container" data-type="array" data-key="dataUtility" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-data-managment-attributes-data-utility-array-container" data-reverse-if-child="true" data-options-data="[{'id':'availability','description':'Availability','type':'Availability','properties':[{'id':'availability','unit':'percentage','unitSymbol':'%','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]},{'id':'responseTime','description':'ResponseTime','type':'ResponseTime','properties':[{'id':'responseTime','unit':'second','unitSymbol':'s','type':'maximum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':1},{'name':'Medium','value':3},{'name':'High','value':5}]}]},{'id':'throughput','description':'throughput','type':'throughput','properties':[{'id':'throughput','unit':'MB/s','unitSymbol':'MB/s','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':0.2},{'name':'Medium','value':1},{'name':'High','value':5}]}]},{'id':'scaleUpMemory','description':'scale-up memory','type':'Scale-up','properties':[{'id':'ramGain','unit':'percentage','unitSymbol':'%','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':110},{'name':'Medium','value':150},{'name':'High','value':200}]},{'id':'ramLimit','unit':'percentage','unitSymbol':'%','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]},{'id':'scaleUpSpace','description':'scale-up space','type':'Scale-up','properties':[{'id':'spaceGain','unit':'percentage','unitSymbol':'%','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':110},{'name':'Medium','value':150},{'name':'High','value':200}]},{'id':'spaceLimit','unit':'percentage','unitSymbol':'%','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]},{'id':'timeliness','description':'Timeliness','type':'Timeliness','properties':[{'id':'timeliness','unit':'percentage','unitSymbol':'%','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]},{'id':'volume','description':'number of tuples','type':'Volume','properties':[{'id':'volume','unit':'tuple','unitSymbol':'tuples','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':300},{'name':'Medium','value':1200},{'name':'High','value':2000}]}]},{'id':'secondsRecorded','description':'number of seconds recorded','type':'SecondsRecorded','properties':[{'id':'secondsRecorded','unit':'second','unitSymbol':'s','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':100000},{'name':'Medium','value':1000000},{'name':'High','value':10000000}]}]},{'id':'accuracy','description':'Accuracy','type':'Accuracy','properties':[{'id':'accuracy','unit':'percentage','unitSymbol':'%','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]},{'id':'precision','description':'Precision','type':'Precision','properties':[{'id':'precision','unit':'none','unitSymbol':'','type':'maximum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':0.5},{'name':'Medium','value':1},{'name':'High','value':3}]}]},{'id':'processCompleteness','description':'Process completeness','type':'Process completeness','properties':[{'id':'completeness','unit':'percentage','unitSymbol':'%','type':'minimum','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]}]}]">
+											<div class="col-md-12 row m-b-10">
+												<label class="col-md-12 card-title m-b-5 m-t-5">Data Utility<br><small>Definition of the metric</small></label>
+												<select class="select2 form-control custom-select select-main" style="width: 85%; height:36px;"></select>
+												<button type="button" style="width: 15%;min-width: unset;display: inline-block;height: 40px;" class="btn btn-success btn-text btn-select btn-insert" data-section-id="vdc-data-managment-attributes-data-utility">Insert</button>
+
+												<div id="vdc-data-managment-attributes-data-utility-array-container" class="form-control vdc-array-container col-md-12 vdc-data-managment-attributes-array-container" data-key="dataUtility" data-type="form" data-original-type="array" data-original-item-type="json-from-template" style="border: none;" data-save-source="form" data-add-source="form" data-reverse-if-child="true">
+
+												</div>
+											</div>
+
+
+										</div>
+
+										<div id="vdc-data-managment-attributes-security" class="card vdc-array col-md-12 form-item-container" data-type="array" data-key="security" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-data-managment-attributes-security-array-container" data-reverse-if-child="true" data-options-data="[{'id':'encryption','description':'Encryption','type':'TransportEncryption','properties':[{'id':'protocol','unit':'enum','unitSymbol':'','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'TLS','value':'TLS'},{'name':'IPSEC','value':'IPSEC'},{'name':'SSL','value':'SSL'},{'name':'SSH','value':'SSH'},{'name':'OTR','value':'OTR'}]},{'id':'algorithm','unit':'list','unitSymbol':'','type':'value','input':'check','allowCustom':false,'predefined':[{'name':'TLS_AES_256_GCM_SHA384','value':'TLS_AES_256_GCM_SHA384'},{'name':'TLS_AES_128_CCM_8_SHA256','value':'TLS_AES_128_CCM_8_SHA256'},{'name':'TLS_AES_128_GCM_SHA256','value':'TLS_AES_128_GCM_SHA256'},{'name':'TLS_AES_128_CCM_SHA256','value':'TLS_AES_128_CCM_SHA256'},{'name':'AES','value':'AES'}]},{'id':'keyLength','unit':'number','unitSymbol':'','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'128','value':128},{'name':'256','value':256},{'name':'512','value':512},{'name':'1024','value':1024},{'name':'4096','value':4096}]}]},{'id':'accessControl','description':'Protocol','type':'Protocol','properties':[{'id':'required','unit':'','unitSymbol':'','type':'value','input':'bool','allowCustom':false,'predefined':[{'name':'true','value':true},{'name':'false','value':false}]},{'id':'protocol','unit':'enum','unitSymbol':'','type':'value','input':'enum','allowCustom':false,'predefined':[{'name':'username/password','value':'username/password'},{'name':'token-based','value':'token-based'},{'name':'none','value':'none'}]},{'id':'credentials','unit':'list','unitSymbol':'','type':'value','input':'text','allowCustom':true,'predefined':[]}]},{'id':'tracing','description':'Tracing','type':'Tracing','properties':[{'id':'level','unit':'enum','unitSymbol':'','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'datasource','value':'datasource'},{'name':'VDC','value':'VDC'},{'name':'client','value':'client'},{'name':'none','value':'none'}]},{'id':'sampleRate','unit':'percentage','unitSymbol':'%','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'Low','value':10},{'name':'Medium','value':50},{'name':'High','value':90}]},{'id':'instrumentation','unit':'enum','unitSymbol':'','type':'value','input':'enum','allowCustom':true,'predefined':[{'name':'VDC','value':'VDC'},{'name':'client','value':'client'},{'name':'none','value':'none'}]}]}]">
+											<div class="col-md-12 row m-b-10">
+												<label class="col-md-12 card-title m-b-5 m-t-5">Security<br><small>Definition of the metric</small></label>
+												<select class="select2 form-control custom-select select-main" style="width: 85%; height:36px;"></select>
+												<button type="button" style="width: 15%;min-width: unset;display: inline-block;height: 40px;" class="btn btn-success btn-text btn-select btn-insert" data-section-id="vdc-data-managment-attributes-security">Insert</button>
+
+												<div id="vdc-data-managment-attributes-security-array-container" class="form-control vdc-array-container col-md-12 vdc-data-managment-attributes-array-container" data-key="security" data-type="form" data-original-type="array" data-original-item-type="json-from-template" style="border: none;" data-save-source="form" data-add-source="form" data-reverse-if-child="true"></div>
+											</div>
+
+
+										</div>
+
+										<div id="vdc-data-managment-attributes-privacy" class="card vdc-array col-md-12 form-item-container" data-type="array" data-key="privacy" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-data-managment-attributes-privacy-array-container" data-reverse-if-child="true" data-options-data="[{'id':'purposeControl_research','description':'PurposeControl research','type':'PurposeControl','properties':[{'id':'availablePurpose','unit':'list','unitSymbol':'','type':'value','input':'check','allowCustom':false,'predefined':[{'name':'research','value':'research'},{'name':'medical research','value':'medical research'},{'name':'nutritional research','value':'nutritional research'},{'name':'government','value':'government'},{'name':'commercial','value':'commercial'},{'name':'non-commercial','value':'non-commercial'}]},{'id':'allowedGuarantor','unit':'list','unitSymbol':'','type':'value','input':'text','allowCustom':true,'predefined':[]}]}]">
+											<div class="col-md-12 row m-b-10">
+												<label class="col-md-12 card-title m-b-5 m-t-5">Privacy<br><small>Definition of the metric</small></label>
+												<select class="select2 form-control custom-select select-main" style="width: 85%; height:36px;"></select>
+												<button type="button" style="width: 15%;min-width: unset;display: inline-block;height: 40px;" class="btn btn-success btn-text btn-select btn-insert" data-section-id="vdc-data-managment-attributes-privacy">Insert</button>
+
+												<div id="vdc-data-managment-attributes-privacy-array-container" class="form-control vdc-array-container col-md-12 vdc-data-managment-attributes-array-container" data-key="privacy" data-type="form" data-original-type="array" data-original-item-type="json-from-template" style="border: none;" data-save-source="form" data-add-source="form" data-reverse-if-child="true"></div>
+											</div>
+
+
+										</div>
+
+									</div>
+
+									<div class="right">
+										<button type="button" class="col-md-12 btn btn-success btn-add btn-text" data-section-id="vdc-data-managment" data-vdc-container-id="vdc-data-managment-array-container">Add Method</button>
+									</div>
+									<div id="vdc-data-managment-array-container" class="form-control vdc-array-container" data-key="DATA_MANAGEMENT" data-type="pre" data-original-type="array" data-original-item-type="json" style="border: none;" data-validation="required-save" data-save-source="pre" data-add-source="form"></div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-data-managment">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="vdc-cookbook-appendix-div" class="col-md-12 col-lg-12 p-0 masonry-item hide">
+						<div id="vdc-cookbook-appendix" class="card vdc-object" data-type="json" data-key="Resources" data-container-key="COOKBOOK_APPENDIX" data-save-source="form" data-add-source="form">
+							<form class="form-horizontal">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Resources<br><small>Resources is a set of infrastructures that need to be instantiated or configurated to form clusters</small></h5>
+
+									<div class="col-md-12 m-b-10 m-t-20 p-0">
+										<button id="vdc-cookbook-appendix-resources-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-cookbook-appendix-resources" data-toggle-siblings="true">Add Resources</button>
+
+										<button id="vdc-cookbook-appendix-resources-remove-btn" type="button" class="btn btn-danger btn-hide btn-text float-right hide" data-section-id="vdc-cookbook-appendix-resources" data-toggle-siblings="true">Remove Resources</button>
+									</div>
+
+									<div id="vdc-cookbook-appendix-resources" class="col-md-12 hide"  data-type="json" data-save-source="form" data-add-source="form">
+
+										<div class="form-group m-t-20" data-key="name" data-type="string" data-validation="requiredIfVisible" data-return-if-visible="true">
+											<label>Name<br><small>Name for this deployment</small></label>
+											<input type="text" class="form-control date-inputmask" placeholder="A unique name">
+											<div class="invalid-feedback">Name is required</div>
+										</div>
+
+										<div class="form-group m-t-20" data-key="description" data-type="string" >
+											<label>Description (Optional)</label>
+											<input type="text" class="form-control date-inputmask">
+										</div>
+
+										<div id="vdc-cookbook-appendix-infrastructures" class="card vdc-array" data-type="array" data-key="infrastructures" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-array-container" data-reverse-if-child="false" data-validation="required,min-1,uniqueItems" data-validation-unique-params="name" >
+											<div id="vdc-cookbook-appendix-infrastructures-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-cookbook-appendix-infrastructures-array-container">
+												<div class="card-body row">
+													<h5 class="card-title m-b-0  col-md-12">Infrastructures<br><small>List of infrastructures to deploy for this hybrid deployment</small></h5>
+
+													<div class="form-group m-t-20 col-md-6" data-key="name" data-type="string" data-validation="required">
+														<label>Name<br><small>Name for this deployment</small></label>
+														<input type="text" class="form-control date-inputmask" placeholder="A unique name">
+														<div class="invalid-feedback">Name is required</div>
+													</div>
+
+													<div class="form-group m-t-20 col-md-6" data-key="description" data-type="string" >
+														<label>Description (Optional)<br><small><wbr></small></label>
+														<input type="text" class="form-control date-inputmask">
+													</div>
+
+													<div class="form-group m-t-20 col-md-12" data-key="type" data-type="enum">
+														<label>Type<br><small>Type of the infrastructure: Cloud or Edge: Cloud infrastructures mean that the resources will be VMs that need to be instantiated. Edge means that the infrastructure is already in place and its information will be added to the database but no further work will be done by a deployer.</small></label>
+														<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+															<option value="">Select</option>
+															<option value="cloud">Cloud</option>
+															<option value="edge">Edge</option>
+														</select>
+													</div>
+
+													<div class="col-md-12 m-b-10">
+														<button id="vdc-cookbook-appendix-infrastructures-provider-add-btn" type="button" class="btn btn-success btn-reveal btn-text" data-section-id="vdc-cookbook-appendix-infrastructures-provider" data-toggle-siblings="true">Add Provider</button>
+
+														<button id="vdc-cookbook-appendix-infrastructures-provider-remove-btn" type="button" class="btn btn-danger btn-hide btn-text float-right hide" data-section-id="vdc-cookbook-appendix-infrastructures-provider" data-toggle-siblings="true">Remove Provider</button>
+													</div>
+
+													<div id="vdc-cookbook-appendix-infrastructures-provider" class="col-md-12 hide">
+														<div class="form-item-container row m-l-0 m-r-0" data-type="json" data-key="provider" data-save-source="form" data-add-source="form" data-return-if-visible="true">
+															<label class="col-md-12">Provider<br><small class="">CloudProviderInfo contains information about a cloud provider</small></label>
+
+															<div class="col-md-6">
+																<div class="form-group m-t-20 col-md-12" data-key="api_endpoint" data-type="string" data-validation="requiredIfVisible">
+																	<label>API Endpoint<br><small>Endpoint to use for this infrastructure</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																	<div class="invalid-feedback">API Endpoint is required</div>
+																</div>
+
+																<div class="form-group m-t-20 col-md-12" data-key="secret_id" data-type="string" >
+																	<label>Secret ID<br><small>Secret identifier to use to log in to the infrastructure manager.</small></label>
+																	<input type="text" class="form-control date-inputmask">
+																</div>
+															</div>
+
+
+															<div class="col-md-6">
+																<div id="vdc-cookbook-appendix-infrastructures-item-provider-type" class="form-group m-t-20 col-md-12" data-key="api_type" data-type="enum">
+																	<label>API Type<br><small>Type of the infrastructure. i.e Cloudsigma, Kubernetes</small></label>
+																	<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+																		<option value="">Select</option>
+																		<option value="cloudsigma">Cloudsigma</option>
+																		<option value="kubernetes">Kubernetes</option>
+																	</select>
+																</div>
+
+																<div class="col-md-12" data-type="json" data-key="credentials" data-save-source="form" data-add-source="form">
+																	<div class="row m-l-0 m-r-0 form-item-container">
+																		<label class="col-md-12">Credentials<br><small class="">Credentials to access the cloud provider. Either this or secret_id is mandatory. Each cloud provider should define the format of this element.</small></label>
+
+																		<div class="form-group col-md-12 m-t-20 vdc-cookbook-appendix-infrastructures-item-provider-type-cloudsigma hide" data-key="username" data-type="string" data-return-if-visible="true">
+																			<label>Username<br></label>
+																			<input type="text" class="form-control date-inputmask" placeholder="Username">
+																		</div>
+
+																		<div class="form-group col-md-12 m-t-20 vdc-cookbook-appendix-infrastructures-item-provider-type-cloudsigma hide" data-key="password" data-type="string" data-return-if-visible="true">
+																			<label>Password<br></label>
+																			<input type="text" class="form-control date-inputmask" placeholder="Password">
+																		</div>
+
+																		<div class="form-group col-md-12 m-t-20 vdc-cookbook-appendix-infrastructures-item-provider-type-kubernetes hide" data-key="config" data-type="string" data-return-if-visible="true">
+																			<label>Credentials file<br></label>
+																			<textarea class="form-control date-inputmask" placeholder="Paste the contents of the credentials file here..." wrap="soft" style="resize: none; overflow-y: scroll; height: 110px;"></textarea>
+																		</div>
+
+																		<div class="form-group col-md-12 m-t-20 vdc-cookbook-appendix-infrastructures-item-provider-type-kubernetes hide" data-key="registries_secret" data-type="string" data-return-if-visible="true">
+																			<label>Secret<br></label>
+																			<input type="text" class="form-control date-inputmask" placeholder="Name of the secret">
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+
+														</div>
+													</div>
+
+													<div class="col-md-12 m-b-10" data-type="json" data-key="extra_properties" data-save-source="form" data-add-source="form">
+														<div class="row m-l-0 m-r-0">
+
+															<div class="form-group hide" data-key="owner" data-type="string">
+																<input type="hidden" value="DataAdministrator">
+															</div>
+
+															<div class="custom-control custom-checkbox mr-sm-2 col-md-12 m-t-5 m-b-5" data-key="ditas_default" data-type="checkboxString">
+																<input type="checkbox" class="custom-control-input" id="vdc-cookbook-appendix-infrastructures-ditas-default" value="true">
+																<label class="custom-control-label" for="vdc-cookbook-appendix-infrastructures-ditas-default">DITAS default</label>
+															</div>
+
+															<div class="custom-control custom-checkbox mr-sm-2 col-md-12" data-key="kubeadm_preinstalled_image" data-type="checkboxString">
+																<input type="checkbox" class="custom-control-input" id="vdc-cookbook-appendix-infrastructures-kubernetes" value="true">
+																<label class="custom-control-label" for="vdc-cookbook-appendix-infrastructures-kubernetes">Kubernetes admin preinstalled image</label>
+															</div>
+														</div>
+													</div>
+
+													<div id="vdc-cookbook-appendix-infrastructures-resources" class="card vdc-array col-md-12" data-type="array" data-key="resources" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-array-container" data-reverse-if-child="true" data-validation="required,min-1,uniqueItems" data-validation-unique-params="name">
+														<div id="vdc-cookbook-appendix-infrastructures-resources-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-array-container">
+															<div class="card-body row">
+																<h5 class="card-title m-b-0 col-md-12">Resource<br><small>List of resources to deploy</small></h5>
+
+																<div class="form-group m-t-20 col-md-6" data-key="name" data-type="string" data-validation="required">
+																	<label>Name<br><small>Suffix for the hostname.</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																	<div class="invalid-feedback">Name is required</div>
+																</div>
+
+																<div class="form-group m-t-20 col-md-6" data-key="disk" data-type="int" data-validation="required">
+																	<label>Boot Disk<br><small>Boot disk size in Mb</small></label>
+																	<div class="input-group">
+																		<input type="text" class="form-control" placeholder="">
+																		<div class="input-group-append">
+																			<span class="input-group-text">Mb</span>
+																		</div>
+																		<div class="invalid-feedback">
+																			Boot Disk size is required
+																		</div>
+																	</div>
+																</div>
+
+																<div class="form-group m-t-20 col-md-6" data-key="image_id" data-type="string">
+																	<label>Image ID<br><small>Boot image ID to use</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																</div>
+
+																<div class="form-group m-t-20 col-md-6" data-key="ip" data-type="string">
+																	<label>IP<br><small>IP to assign this VM. In case it's not specified, the first available one will be used.</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																</div>
+
+																<div class="col-md-12 m-b-10" data-type="json" data-key="extra_properties" data-save-source="form" data-add-source="form" data-ignore-if-empty="true">
+																	<div class="row m-l-0 m-r-0">
+
+																		<div class="custom-control custom-checkbox mr-sm-2 col-md-12 m-t-5 m-b-5 p-l-0 p-r-0" data-key="cloudsigma_boot_drive_type" data-type="string">
+																			<label>Cloudsigma Boot Drive Type</small></label>
+																			<input type="text" class="form-control date-inputmask" placeholder="">
+																		</div>
+
+																	</div>
+																</div>
+
+																<div class="form-group m-t-20 col-md-6" data-key="type" data-type="string">
+																	<label>Type<br><small>Type of the VM to create i.e. n1-small</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																</div>
+
+																<div class="form-group m-t-20 col-md-6" data-key="role" data-type="enum">
+																	<label>Role<br><small>Role that this VM plays.</small></label>
+																	<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+																		<option value="">Select</option>
+																		<option value="master">Master</option>
+																		<option value="slave">Slave</option>
+																	</select>
+																</div>
+
+																<div class="form-group m-t-20 col-md-4" data-key="cpu" data-type="int">
+																	<label>CPU<br><small>CPU speed in MHz. Ignored if type is provided</small></label>
+																	<div class="input-group">
+																		<input type="text" class="form-control" placeholder="">
+																		<div class="input-group-append">
+																			<span class="input-group-text">MHz</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="form-group m-t-20 col-md-4" data-key="cores" data-type="int">
+																	<label>Cores<br><small>Number of cores. Ignored if type is provided</small></label>
+																	<input type="text" class="form-control date-inputmask" placeholder="">
+																</div>
+
+																<div class="form-group m-t-20 col-md-4" data-key="ram" data-type="int">
+																	<label>RAM<br><small>RAM quantity in Mb. Ignored if type is provided</small></label>
+																	<div class="input-group">
+																		<input type="text" class="form-control" placeholder="">
+																		<div class="input-group-append">
+																			<span class="input-group-text">Mb</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div id="vdc-cookbook-appendix-infrastructures-resources-drives" class="card vdc-array col-md-12" data-type="array" data-key="drives" data-save-source="pre" data-add-source="form" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-drives-array-container" data-reverse-if-child="true"  data-validation="uniqueItems" data-validation-unique-params="name">
+																	<div id="vdc-cookbook-appendix-infrastructures-resources-drives-item" class="form-item-container" data-type="json" data-save-source="pre" data-add-source="form"  data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-drives-array-container">
+																		<div class="card-body row">
+																			<h5 class="card-title col-md-12">Drives<br><small>List of data drives to attach to this VM</small></h5>
+																			<h5 class="card-title col-md-12">Drive<br><small>Drive holds information about a data drive attached to a node</small></h5>
+
+																			<div class="form-group m-t-20 col-md-4" data-key="name" data-type="string" data-validation="required">
+																				<label>Name<br><small>Unique name for the drive</small></label>
+																				<input type="text" class="form-control date-inputmask" placeholder="">
+																				<div class="invalid-feedback">Name is required</div>
+																			</div>
+
+																			<div class="form-group m-t-20 col-md-4" data-key="size" data-type="int" data-validation="required">
+																				<label>Size<br><small>Size of the disk in Mb</small></label>
+																				<div class="input-group">
+																					<input type="text" class="form-control" placeholder="">
+																					<div class="input-group-append">
+																						<span class="input-group-text">Mb</span>
+																					</div>
+																					<div class="invalid-feedback">
+																						Size is required
+																					</div>
+																				</div>
+																			</div>
+
+																			<div class="form-group m-t-20 col-md-4" data-key="type" data-type="enum">
+																				<label>Type<br><small>Type of the drive.</small></label>
+																				<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+																					<option value="">Select</option>
+																					<option value="SSD">SSD</option>
+																					<option value="HDD">HDD</option>
+																				</select>
+																			</div>
+
+																			<div class="col-md-12 right">
+																				<button type="button" class="col-md-12 btn btn-success btn-add btn-text m-b-5" data-section-id="vdc-cookbook-appendix-infrastructures-resources-drives" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-drives-array-container">Add Drive</button>
+																			</div>
+
+																			<div id="vdc-cookbook-appendix-infrastructures-resources-drives-array-container" class="form-control vdc-array-container" data-key="drives" data-type="pre" data-original-type="array" data-original-item-type="json" data-save-source="pre" data-add-source="form" style="border: none;"></div>
+
+																		</div>
+																	</div>
+																</div>
+
+
+
+																<div class="col-md-12 right">
+																	<button type="button" class="col-md-12 btn btn-success btn-add btn-text m-b-5" data-section-id="vdc-cookbook-appendix-infrastructures-resources" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-resources-array-container">Add Resource</button>
+																</div>
+
+																<div id="vdc-cookbook-appendix-infrastructures-resources-array-container" class="form-control vdc-array-container"  data-section-id="vdc-cookbook-appendix-infrastructures-resources" data-key="resources" data-type="pre" data-original-type="array" data-original-item-type="json" data-save-source="pre" data-add-source="form" data-validation="min-1" style="border: none;"></div>
+
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-12 right">
+														<button type="button" class="col-md-12 btn btn-success btn-add btn-text m-b-5" data-section-id="vdc-cookbook-appendix-infrastructures" data-vdc-container-id="vdc-cookbook-appendix-infrastructures-array-container">Add Infrastructure</button>
+													</div>
+
+													<div id="vdc-cookbook-appendix-infrastructures-array-container" class="form-control vdc-array-container col-md-12" data-key="infrastructures" data-type="pre" data-original-type="array" data-original-item-type="json" data-save-source="pre" data-add-source="form" data-validation="requiredIfVisible,min-1" data-section-id="vdc-cookbook-appendix-infrastructures" style="border: none;"></div>
+
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text" data-section-id="vdc-cookbook-appendix">Save Section</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				<div id="vdc-exposed-api-div" class="row masonry-row hide">
+
+					<div class="col-md-6 col-lg-6 masonry-item">
+						<div id="" class="card">
+							<form class="form-horizontal">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Import OpenAPI 3.0.2</h5>
+
+									<div id="vdc-exposed-api-object" class="form-group m-t-20 json-object-param" >
+										<button type="button" class="btn btn-success left btn-add" data-result-id="vdc-exposed-api-object" data-action="validateAPI" data-toggle="modal" data-target="#jsonObjectModal" data-title="OpenAPI" data-subtitle="JSON Object">Upload API</button>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-12 col-lg-12 masonry-item">
+						<div id="vdc-exposed-api" class="card vdc-object" data-type="json" data-key="" data-save-source="form" data-add-source="form">
+							<form class="form-horizontal" data-type="" data-save-source="" data-add-source="">
+								<div class="card-body">
+									<h5 class="card-title m-b-0">Methods</h5>
+
+									<div id="vdc-exposed-api-method" class="form-group m-t-20" data-key="" data-type="" data-validation="">
+										<label>Method Path</label>
+										<select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+											<option value="">Please import API first</option>
+										</select>
+									</div>
+
+									<div id="vdc-exposed-api-method-details" class="form-group m-t-20" data-key="" data-type="inside" data-validation="" data-save-source="form">
+
+									</div>
+
+									<div id="vdc-exposed-api-x-iam-roles" class="form-group m-t-20 vdc-array hide" data-key="x-iam-roles" data-type="array" data-validation="uniqueItems" data-save-source="input" data-add-source="form" data-vdc-container-id="vdc-exposed-api-x-iam-roles-container" data-reverse-if-child="true" data-original-item-type="string">
+										<label>x-iam-roles</label>
+										<div class="input-group" data-key="" data-type="string" data-validation="">
+											<input type="text" class="form-control enter-add-to-array" placeholder="" aria-describedby="vdc-exposed-api-x-iam-roles-add-btn" data-enter-id="vdc-exposed-api-x-iam-roles-add-btn">
+											<div class="input-group-append">
+												<button id="vdc-exposed-api-x-iam-roles-add-btn" type="button" class="btn btn-outline btn-outline-success btn-add" data-section-id="vdc-exposed-api-x-iam-roles" data-vdc-container-id="vdc-exposed-api-x-iam-roles-container"><i class="mdi mdi-plus"></i></button>
+											</div>
+										</div>
+
+										<div id="vdc-exposed-api-x-iam-roles-container" data-reverse-if-child="true" class="vdc-array-container" data-type="input" data-key="x-iam-roles" data-original-type="string" data-original-item-type="string" data-validation=""></div>
+									</div>
+
+									<div class="right">
+										<button type="button" class="btn btn-success btn-save btn-text hide" data-section-id="vdc-exposed-api">Save Method</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<footer class="footer text-center">
+
+			</footer>
+
+			<!-- Modal -->
+			<div class="modal fade bd-example-modal-lg" id="jsonObjectModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header d-block">
+							<div class="d-flex">
+								<h5 class="modal-title"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<h6 class="modal-subtitle"></h6>
+						</div>
+						<div class="modal-body ace-editor-container">
+							<pre id="modal-json-editor" class="ace-editor"></pre>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success btn-save">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/libs/masonry/dist/masonry.pkgd.min.js"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+	<!--Wave Effects -->
+	<script src="../js/waves.js"></script>
+	<!--Menu sidebar -->
+	<script src="../js/sidebarmenu.js"></script>
+	<!--Custom JavaScript -->
+	<script src="../js/custom.min.js"></script>
+	<!--This page JavaScript -->
+	<script src="../assets/libs/src-noconflict/ace.js"></script>
+	<script src="../assets/libs/src-noconflict/ext-language_tools.js"></script>
+	<script src="../assets/libs/select2/dist/js/select2.full.min.js"></script>
+	<script src="../assets/libs/select2/dist/js/select2.min.js"></script>	
+	<!-- Charts js Files -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+	<script>
+		_u = _.noConflict(); // lets call ourselves _u
+	</script>
+	<script src="../js/open-api-validator.js"></script>
+	<script src="../js/stergios.js"></script>
+	<script>
+		//***********************************//
+		// For select 2
+		//***********************************//
+		$(".select2").select2();
+		// document.body.setAttribute('data-theme', 'dark')
+	</script>
+	<script>
+		// trigger extension
+		ace.require("ace/ext/language_tools");
+
+		var editor = ace.edit("modal-json-editor");
+		editor.setTheme("ace/theme/clouds_midnight");
+		// enable autocompletion and snippets
+		editor.setOptions({
+			enableBasicAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: false
+		});
+</script>
+</body>
+
+</html>
