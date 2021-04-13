@@ -5,4 +5,4 @@ The Blueprint (JSON) schema editor (and validator), for the Virtual Data Contain
 Visit the editor by clicking [here](http://147.102.19.87:3000).
 
 ## Editor Code
-You can view the full code, as well as the installation instructions, by clicking [here](https://github.com/AlvertisMinas/VDC-Artifact-Editor).
+The code is available above, in the folder "code". However, the code is available through another repository, made public by the main developer. You can visit it by clicking [here](https://github.com/AlvertisMinas/VDC-Artifact-Editor).
