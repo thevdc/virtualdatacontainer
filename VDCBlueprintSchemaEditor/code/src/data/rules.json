@@ -1,0 +1,13 @@
+{
+"rule_1": "Supported types are: \"string\", \"object\", \"array\", \"boolean\", \"number\" and fields containing \"enum\":[...]",
+"rule_2": "\"const\": \"value\" is not supported. Use \"enum\": [\"value\"] instead.",
+"rule_3": "Invalid property names: \"props\", \"items\", \"_num_\"",
+"rule_4": "All object elements should have a \"properties\" property",
+"rule_5": "All array elements should have an \"items\" property",
+"rule_6": "All \"sections\" are asumed as \"required\"",
+"rule_7": "All head properties of a section are asumed as \"required\"",
+"rule_8": "Sections cannot be simple input fields. They should either be of type: \"object\" with properties or of type: \"array\"",
+"rule_9": "\"oneOf\" property is supported. \"allOf\" and \"anyOf\" are not",
+"rule_10": "\"oneOf\" should contain \"properties\" (for objects) or \"items\" (for arrays). Not the other way round",
+"rule_11": "\"oneOf\" property cannot set different types for each case. This also means that you cannot set an \"oneOf\" case without a \"properties\" property in order to have a simple JSON input field."
+}

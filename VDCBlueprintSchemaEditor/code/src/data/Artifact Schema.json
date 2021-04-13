@@ -1,0 +1,718 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cloudsecurityalliance.org/schemas/artifact.json",
+  "title": "The Artifact Schema",
+  "type": "object",
+  "description": "This is an Artifact which consists of four sections",
+  "properties": {
+    "General_Description": {
+      "$comment": "The first section",
+      "type": "object",
+      "description": "General information to one of the Company's Decision Strategy Makers, usually the one responsible for it’s vision",
+      "properties": {
+        "Overview": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "This field should contain the name of the Artifact"
+            },
+            "description": {
+              "type": "string",
+              "description": "This field should contain a short description of the Artifact"
+            },
+            "tags": {
+              "type": "array",
+              "description": "Each element of this array should contain some keywords that describe the functionality of every nested Artifact",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "nested_artifact_id": {
+                    "type": "string",
+                    "description": "The id of the nested Artifact"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "nested_artifact_id",
+                  "tags"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "description",
+            "tags"
+          ]
+        },
+        "Licensing": {
+          "type": "object",
+          "description": "Information about the licensing of the service",
+          "properties": {
+            "Libraries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "library_name": {
+                    "type": "string",
+                    "description": "The name of the library"
+                  }
+                },
+                "required": [
+                  "library_name"
+                ]               
+              },
+              "uniqueItems": true
+            },
+            "Artifact": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "enum": [
+                    "OpenSource",
+                    "Proprietary",
+                    "Other"
+                  ]
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type"
+              ]
+            },
+            "Nested_Artifacts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "nested_artifact_id": {
+                    "type": "string",
+                    "description": "The id of the nested Artifact"
+                  }
+                },
+                "required": [
+                  "nested_artifact_id"
+                ]
+              },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Artifact"
+          ]
+        },
+        "Compliance": {
+          "type": "array",
+          "description": "All the cases where the product complies and conforms to a policy or law",
+          "items": {
+            "type": "object",
+            "properties": {
+              "standard_name": {
+                "type": "string",
+                "description": "The name of the standard"
+              },
+              "standard_details": {
+                "type": "string",
+                "description": "Extra information related to the standard and the compliance"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "standard_name"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "Interfaces": {
+          "type": "array",
+          "description": "Detailed information regarding the product’s Input and Output data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "interface_name": {
+                "type": "string"
+              },
+              "input": {
+                "type": "object",
+                "properties": {
+                  "parameters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    },
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "parameters"
+                ]
+              },
+              "output": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            },
+            "required": [
+              "interface_name",
+              "input",
+              "output"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "Update_Strategy": {
+          "type": "array",
+          "description": "OS’s upgrade plan for   traditional updates, security updates and backports",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Traditional Updates": {
+                "type": "string"
+              },
+              "Security Updates": {
+                "type": "string"
+              },
+              "Backport Fixes": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "Security Updates"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Overview",
+        "Licensing",
+        "Compliance",
+        "Interfaces",
+        "Update_Strategy"
+      ]
+    },
+    "Pricing_Models": {
+      "$comment": "The second section",
+      "type": "object",
+      "description": "Pricing models, for a company’s executive who has primary responsibility for managing it’s finances and all the issues of financial nature",
+      "oneOf": [
+        {
+          "description": "Pricing as a structure",
+          "properties": {
+            "fixed_price": {
+              "type": "object",
+              "properties": {
+                "available": {
+                  "enum": [
+                    true
+                  ]
+                },
+                "total_price_amount": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "available",
+                "total_price_amount"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "fixed_price"
+          ]
+        },
+        {
+          "description": "Pricing as a service",
+          "properties": {
+            "fixed_price": {
+              "type": "object",
+              "properties": {
+                "available": {
+                  "enum": [
+                    false
+                  ]
+                },
+                "total_price_amount": {
+                  "enum": [
+                    "N/A"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "available",
+                "total_price_amount"
+              ]
+            },
+            "pricing_function": {
+              "type": "object",
+              "description": "Pricing function which could include several pricing factors based on the inividual components",
+              "properties": {
+                "available": {
+                  "enum": [
+                    true
+                  ]
+                },
+                "factors": {
+                  "type": "array",
+                  "items": {
+                    "enum": [
+                      "time",
+                      "hits",
+                      "other"
+                    ]
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "available",
+                "factors"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "fixed_price",
+            "pricing_function"
+          ]
+        }
+      ]
+    },
+    "Tech_Components": {
+      "$comment": "The third section",
+      "type": "object",
+      "description": "Refers to the company’s executive whose main, primary focus is on scientific and technological issues within the organization",
+      "properties": {
+        "technological_details": {
+          "type": "object",
+          "properties": {
+            "OS": {
+              "type": "object",
+              "properties": {
+                "host": {
+                  "type": "string"
+                },
+                "distribution": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "host",
+                "distribution"
+              ]
+            },
+            "Kernel": {
+              "type": "object",
+              "properties": {
+                "modules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "module_name": {
+                        "type": "string"
+                      },
+                      "loaded": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "module_name",
+                      "loaded"
+                    ]
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "modules"
+              ]
+            },
+            "tech_overview": {
+              "type": "object",
+              "properties": {
+                "modules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "module_name": {
+                        "type": "string"
+                      },
+                      "sensitivity_level": {
+                        "enum": [
+                          "very low",
+                          "low",
+                          "medium",
+                          "high",
+                          "very high",
+                          "other"
+                        ]
+                      },
+                      "versioning_libraries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "uniqueItems": true
+                      },
+                      "scalability": {
+                        "type": "boolean"
+                      },
+                      "limitations": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "uniqueItems": true
+                      },
+                      "supporting_dbs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "uniqueItems": true
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "module_name",
+                      "sensitivity_level"
+                    ]
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "modules"
+              ]
+            },
+            "deployment": {
+              "type": "object",
+              "properties": {
+                "dependencies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "module_name": {
+                        "type": "string",
+                        "description": "module_name as this has been defined in the tech_overview.modules field"
+                      },
+                      "dependencies": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "uniqueItems": true
+                      }
+                    }
+                  },
+                  "uniqueItems": true
+                },
+                "sequence": {
+                  "type": "array",
+                  "description": "A specific sequence of modules, identified by their module_names as these have been defined in the tech_overview.modules field",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "sequence"
+              ]
+            },
+            "cookbooks": {
+              "type": "array",
+              "description": "The URI to the cookbook script file for each one module",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "module_name": {
+                    "type": "string",
+                    "description": "module_name as this has been defined in the tech_overview.modules field"
+                  },
+                  "script": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "module_name",
+                  "script"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "artifact_orch_tools": {
+              "enum": [
+                "IBM Cloud Orchestrator",
+                "Microsoft Azure Cost Management",
+                "Morpheus",
+                "CloudBolt",
+                "Embotics",
+                "RightScale",
+                "OpenStack",
+                "BMC Cloud Lifecycle Management",
+                "vRealize Suite"
+              ]
+            },
+            "SELINUX": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "vTPM": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "protocol_standards": {
+              "type": "object",
+              "properties": {
+                "spiffe": {
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "json_web_token": {
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "spiffe",
+                "json_web_token"
+              ],
+              "uniqueItems": true,
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "tech_overview",
+            "deployment",
+            "cookbooks",
+            "artifact_orch_tools",
+            "SELINUX",
+            "vTPM",
+            "OS",
+            "protocol_standards",
+            "Kernel"
+          ]
+        },
+        "cookbook_type": {
+          "enum": [
+            "chef",
+            "puppet",
+            "ansible",
+            "other"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "technological_details",
+        "cookbook_type"
+      ]
+    },
+    "Service_Interface": {
+      "$comment": "The fourth section",
+      "type": "object",
+      "description": "Refers to the company's developers",
+      "properties": {
+        "junit_tests": {
+          "type": "array",
+          "description": "A junit test for each module",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module_name": {
+                "type": "string",
+                "description": "module_name as this has been defined in the Tech_Components.technological_details.tech_overview.modules field"
+              },
+              "junit_test": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "module_name",
+              "junit_test"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "input_output": {
+          "type": "array",
+          "description": "Example data for the input/output of each one interface as these have been defined in the General_Description.Interfaces field",
+          "items": {
+            "type": "object",
+            "properties": {
+              "interface_name": {
+                "type": "string",
+                "description": "interface_name as this has been defined in the General_Description.Interfaces field"
+              },
+              "input_example": {},
+              "output_example": {}
+            },
+            "additionalProperties": false,
+            "required": [
+              "interface_name",
+              "input_example",
+              "output_example"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "tuples": {
+          "type": "array",
+          "description": "Includes all the information needed for the developers to understand which Tuples are contained in each cookbook",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tuple": {
+                "type": "string",
+                "description": "tuple name and information regarding it"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "tuple"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "api": {
+          "type": "array",
+          "description": "Additional metadata for each one interface as these have been defined in the General_Description.Interfaces field",
+          "items": {
+            "type": "object",
+            "properties": {
+              "interface_name": {
+                "type": "string",
+                "description": "interface_name as this has been defined in the General_Description.Interfaces field"
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^/",
+                "description": "A relative path to an individual endpoint, beginning with a slash"
+              },
+              "operation_type": {
+                "enum": [
+                  "get",
+                  "put",
+                  "post",
+                  "delete",
+                  "head",
+                  "patch",
+                  "other"
+                ]
+              }
+            },
+            "required": [
+              "interface_name",
+              "path",
+              "operation_type"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "servers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "url"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "junit_tests",
+        "input_output",
+        "tuples",
+        "api",
+        "servers"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "General_Description",
+    "Pricing_Models",
+    "Tech_Components",
+    "Service_Interface"
+  ]
+}

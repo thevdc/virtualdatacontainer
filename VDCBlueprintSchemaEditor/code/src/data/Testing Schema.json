@@ -1,0 +1,1231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cloudsecurityalliance.org/schemas/artifact.json",
+  "title": "The Artifact Schema",
+  "type": "object",
+  "description": "This is an Artifact which consists of four sections",
+  "properties": {
+
+    "OneOf_In_Arrays":{
+      "type":"object",
+      "description":"Testing",
+      "properties":{
+        "array head prop":{
+          "type":"array",
+          "description":"ahp desc",
+          "items":{
+            "type":"object",
+            "properties":{
+              "a prop":{
+                "type":"object",
+                "description":"a prop desc",
+                "oneOf":[
+                  {
+                    "description":"case 0 of a prop",
+                    "properties":{
+                      "one":{
+                        "type":"string"
+                      }
+                    }
+                  },
+                  {
+                    "description":"case 1 of a prop",
+                    "properties":{
+                      "two":{
+                        "type":"number"
+                      }
+                    }
+                  }
+                ]
+              },
+              "b prop":{
+                "type":"object",
+                "description":"b prop desc",
+                "oneOf":[
+                  {
+                    "description":"case 0 of b prop",
+                    "properties":{
+                      "one":{
+                        "type":"string"
+                      }
+                    }
+                  },
+                  {
+                    "description":"case 1 of b prop",
+                    "properties":{
+                      "two":{
+                        "type":"number"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "one level":{
+          "type":"object",
+          "description":"desc of one",
+          "properties":{
+            "fr":{
+              "type":"array",
+              "description":"desc of fr",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "fr_1":{
+                    "type":"object",
+                    "description":"desc of fr_1",
+                    "oneOf":[
+                      {
+                        "description":"ca1",
+                        "properties":{
+                          "pr1":{
+                            "type":"string",
+                            "description":"desc pr1"
+                          }
+                        }
+                      },
+                      {
+                        "description":"ca2",
+                        "properties":{
+                          "pr_B":{
+                            "type":"boolean",
+                            "description":"desc pr_B"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Three Levels":{
+          "type":"object",
+          "description":"desc of Three",
+          "properties":{
+            "RC":{
+              "type":"array",
+              "description":"desc of RC",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "RC_1":{
+                    "type":"array",
+                    "description":"desc of RC_1",
+                    "items":{
+                      "type":"object",
+                      "properties":{
+                        "RC_2":{
+                          "type":"array",
+                          "description":"desc of RC_1",
+                          "items":{
+                            "type":"object",
+                            "properties":{
+                              "RC_64":{
+                                "type":"object",
+                                "description":"desc of rc64",
+                                "oneOf":[
+                                  {
+                                    "description":"ca1",
+                                    "properties":{
+                                      "pr1":{
+                                        "type":"string",
+                                        "description":"desc pr1"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "description":"ca2",
+                                    "properties":{
+                                      "pr_B":{
+                                        "type":"boolean",
+                                        "description":"desc pr_B"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "one level Double oneOf":{
+          "type":"object",
+          "description":"desc of one",
+          "properties":{
+            "fr":{
+              "type":"array",
+              "description":"desc of fr",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "fr_A":{
+                    "type":"object",
+                    "description":"desc of fr_A",
+                    "oneOf":[
+                      {
+                        "description":"ca1",
+                        "properties":{
+                          "pr1":{
+                            "type":"string",
+                            "description":"desc pr1"
+                          }
+                        }
+                      },
+                      {
+                        "description":"ca2",
+                        "properties":{
+                          "pr_B":{
+                            "type":"boolean",
+                            "description":"desc pr_B"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "fr_B":{
+                    "type":"object",
+                    "description":"desc of fr_B",
+                    "oneOf":[
+                      {
+                        "description":"ca1",
+                        "properties":{
+                          "pr1":{
+                            "type":"string",
+                            "description":"desc pr1"
+                          }
+                        }
+                      },
+                      {
+                        "description":"ca2",
+                        "properties":{
+                          "pr_B":{
+                            "type":"boolean",
+                            "description":"desc pr_B"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "two level Double oneOf":{
+          "type":"object",
+          "description":"desc of two D",
+          "properties":{
+            "kl":{
+              "type":"array",
+              "description":"desc of kl",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "fr":{
+                    "type":"array",
+                    "description":"desc of fr",
+                    "items":{
+                      "type":"object",
+                      "properties":{
+                        "fr_A":{
+                          "type":"object",
+                          "description":"desc of fr_A",
+                          "oneOf":[
+                            {
+                              "description":"ca1",
+                              "properties":{
+                                "pr1":{
+                                  "type":"string",
+                                  "description":"desc pr1"
+                                }
+                              }
+                            },
+                            {
+                              "description":"ca2",
+                              "properties":{
+                                "pr_B":{
+                                  "type":"boolean",
+                                  "description":"desc pr_B"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "fr_B":{
+                          "type":"object",
+                          "description":"desc of fr_B",
+                          "oneOf":[
+                            {
+                              "description":"ca1",
+                              "properties":{
+                                "pr1":{
+                                  "type":"string",
+                                  "description":"desc pr1"
+                                }
+                              }
+                            },
+                            {
+                              "description":"ca2",
+                              "properties":{
+                                "pr_B":{
+                                  "type":"boolean",
+                                  "description":"desc pr_B"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "one level Array OneOf":{
+          "type":"object",
+          "description":"desc of one",
+          "properties":{
+            "fr":{
+              "type":"array",
+              "description":"desc of fr",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "fr_1":{
+                    "type":"array",
+                    "description":"desc of fr_1",
+                    "oneOf":[
+                      {
+                        "description":"ca1",
+                        "items":{
+                          "type":"object",
+                          "properties":{
+                            "pr1":{
+                              "type":"string",
+                              "description":"desc pr1"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "description":"ca2",
+                        "items":{
+                          "type":"string"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "two level Array OneOf":{
+          "type":"object",
+          "description":"desc of tlaoo",
+          "properties":{
+            "zz":{
+              "type":"array",
+              "description":"desc of z",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "fr":{
+                    "type":"array",
+                    "description":"desc of fr",
+                    "items":{
+                      "type":"object",
+                      "properties":{
+                        "fr_1":{
+                          "type":"array",
+                          "description":"desc of fr_1",
+                          "oneOf":[
+                            {
+                              "description":"ca1",
+                              "items":{
+                                "type":"object",
+                                "properties":{
+                                  "pr1":{
+                                    "type":"string",
+                                    "description":"desc pr1"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "description":"ca2",
+                              "items":{
+                                "type":"string"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "Sr":{
+                    "type":"object",
+                    "description":"desc of sr",
+                    "required":[
+                      "et"
+                    ],
+                    "properties":{
+                      "et":{
+                        "type":"string",
+                        "description":"de of et"
+                      },
+                      "te2":{
+                        "type":"object",
+                        "description":"des of te2",
+                        "oneOf":[
+                          {
+                            "description":"prwto case",
+                            "properties":{
+                              "ena":{
+                                "type":"boolean",
+                                "description":"desc of ena"
+                              }
+                            }
+                          },
+                          {
+                            "description":"deutero case",
+                            "properties":{
+                              "dyo":{
+                                "type":"string",
+                                "description":"desc of dyo"
+                              },
+                              "tria":{
+                                "enum":[
+                                  "frist",
+                                  "sec",
+                                  "other",
+                                  "third",
+                                  "Other"
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "Array_Section":{
+      "type":"array",
+      "description":"Description of Array_Section",
+      "minItems":1,
+      "items":{
+        "type":"object",
+        "properties":{
+          "oneOf_in_inner_array":{
+            "type":"array",
+            "description":"blah",
+            "items":{
+              "type":"object",
+              "properties":{
+                "p66":{
+                  "type":"object",
+                  "description":"p66 d",
+                  "oneOf":[
+                    {
+                      "description":"c000",
+                      "properties":{
+                        "ena":{
+                          "type":"string"
+                        }
+                      }
+                    },
+                    {
+                      "description":"c111",
+                      "properties":{
+                        "duo":{
+                          "type":"number"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "inner_array_oneOf":{
+            "type":"array",
+            "description":"array desc",
+            "oneOf":[
+              {
+                "items":{
+                  "type":"object",
+                  "properties":{
+                    "one":{
+                      "type":"string"
+                    }
+                  }
+                }
+              },
+              {
+                "items":{
+                  "type":"object",
+                  "properties":{
+                    "two":{
+                      "type":"boolean"
+                    }
+                  }
+                }
+              },
+              {
+                "description":"c2 desc",
+                "items":{
+                  "type":"number"
+                }
+              }
+            ]
+          },
+          "minus_one":{
+            "type":"object",
+            "description":"Cheking oneOf in the path",
+            "properties": {
+              "p1":{
+                "type":"object",
+                "properties":{
+                  "p1p1":{
+                    "type":"string"
+                  },
+                  "p1p0":{
+                    "type":"object",
+                    "description":"p1p0desc",
+                    "oneOf":[
+                      {
+                        "description":"d1",
+                        "properties":{
+                          "p1p0c0p1":{
+                            "type":"string",
+                            "description":"p1p0c0p1 des"
+                          }
+                        },
+                        "required":[
+                          "p1p0c0p1"
+                        ]
+                      },
+                      {
+                        "description":"dtwo",
+                        "properties":{
+                          "p1p0c1p1":{
+                            "type":"number",
+                            "description":"p1p0c1p1 des"
+                          },
+                          "a third property":{
+                            "type":"object",
+                            "description":"desc of third",
+                            "properties":{
+                              "test_prop":{
+                                "type":"string",
+                                "description":"desc of testprop"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "p1p2":{
+                    "type":"object"
+                  },
+                  "p1p3":{
+                    "type":"object",
+                    "properties":{
+                      "p1p3p1":{
+                        "type":"string"
+                      }
+                    }
+                  },
+                  "p1p4":{
+                    "type":"array",
+                    "description":"p1p4 ds",
+                    "minItems":1,
+                    "items":{
+                      "type":"object",
+                      "properties":{
+                        "p1p4p1":{
+                          "type":"string"
+                        }
+                      }
+                    }
+                  },
+                  "p1p5":{
+                    "type":"array",
+                    "description":"p1p5 des",
+                    "items":{
+                      "type":"string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "the_zero":{
+            "type":"object",
+            "description":"zero desc",
+            "oneOf":[
+              {
+                "description":"case 00",
+                "properties":{
+                  "some prop":{
+                    "type":"string",
+                    "description":"desc for some prop"
+                  }
+                }
+              },
+              {
+                "description":"case 11",
+                "properties":{
+                  "some other prop":{
+                    "type":"number",
+                    "description":"desc for some other prop"
+                  },
+                  "a third property":{
+                    "type":"object",
+                    "description":"desc of third",
+                    "properties":{
+                      "test_prop":{
+                        "type":"string",
+                        "description":"desc of testprop"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "the_one":{
+            "type":"string",
+            "description":"desc for the one"
+          },
+          "the_two":{
+            "type":"number",
+            "description":"desc for the two"
+          },
+          "the_three":{
+            "type":"object",
+            "properties":{
+              "p1":{
+                "type":"string",
+                "description":"p1desc"
+              },
+              "p2":{
+                "type":"string",
+                "description":"p2desc"
+              }
+            }
+          },
+          "the_forth":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+              "type":"object",
+              "properties":{
+                "f1":{
+                  "type":"string",
+                  "description":"f1desc"
+                }
+              }
+            }
+          },
+          "the_fifth":{
+            "type":"object",
+            "properties":{
+              "pp1":{
+                "type":"object",
+                "properties":{
+                  "pp1p1":{
+                    "type":"object",
+                    "description":"fsfsfsfsf"
+                  },
+                  "pp1p2":{
+                    "type":"array",
+                    "minItems":1,
+                    "items":{
+                      "type":"object",
+                      "properties":{
+                        "pp1p2p1":{
+                          "type":"object",
+                          "description":"twttwtw"
+                        },
+                        "pp1p2p2":{
+                          "enum":[
+                            "one",
+                            "two",
+                            "three",
+                            "other"
+                          ]
+                        },
+                        "pp1p2p3":{
+                          "type":"array",
+                          "items":{
+                            "type":"object",
+                            "properties":{
+                              "pp1p2p3p1":{
+                                "type":"string"
+                              },
+                              "pp1p2p3p2":{
+                                "type":"number"
+                              }
+                            },
+                            "required":[
+                              "pp1p2p3p1"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pp2":{
+                "type":"array",
+                "minItems":1,
+                "items":{
+                  "type":"object",
+                  "properties":{
+                    "pp2p1":{
+                      "type":"string"
+                    },
+                    "pp2p2":{
+                      "enum":[
+                        "one",
+                        "two",
+                        "three",
+                        "other"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required":[
+          "the_one"
+        ]
+      }
+    },
+
+    "Testing Stuff":{
+      "type": "object",
+      "description": "test",
+      "properties": {
+        "Testing_inner_oneOf":{
+          "type":"object",
+          "description":"This is the desc for testing inner oneOf",
+          "properties":{
+
+            "check":{
+              "type":"object",
+              "properties":{
+                "m2":{
+                  "type":"string"
+                },
+                "minus_one_prop":{
+                  "type":"array",
+                  "description":"desc for testing/minus",
+                  "minItems": 1,
+                  "oneOf":[
+                    {
+                      "description":"desc minus/1",
+                      "items":{
+                        "type":"object",
+                        "properties":{
+                          "minus_1":{
+                            "type":"number",
+                            "description":"desc m1"
+                          },
+                          "minus_2":{
+                            "type":"boolean",
+                            "description":"desc m2"
+                          },
+                          "minus_3":{
+                            "type":"array",
+                            "description":"desc m3",
+                            "items":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description":"desc minus/2",
+                      "items":{
+                        "type":"object",
+                        "properties":{
+                          "dee_minus_1":{
+                            "type":"string",
+                            "description":"desc dm1"
+                          },
+                          "dee_minus_2":{
+                            "type":"object",
+                            "description":"desc dm2"
+                          },
+                          "dee_minus_3":{
+                            "type":"object",
+                            "description":"desc dm2"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description":"desc minus/3",
+                      "items":{
+                        "enum":[
+                          "ee",
+                          "oo",
+                          "other"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+            ,
+            "zero_prop":{
+              "type":"object",
+              "description":"zero desc",
+              "properties":{
+                "zeroOf":{
+                  "type":"object",
+                  "description":"zeroOOOF desc",
+                  "oneOf":[
+                    {
+                      "description":"desc zero 1",
+                      "properties":{
+                        "1_1_0000_0000":{
+                          "type":"string",
+                          "description":"desc 1_1"
+                        },
+                        "1_2_0000":{
+                          "type":"number",
+                          "description":"desc 1_2"
+                        }
+                      }
+                    },
+                    {
+                      "description":"desc zero 2",
+                      "properties":{
+                        "2_1_0000000":{
+                          "type":"string",
+                          "description":"desc 2_1"
+                        },
+                        "2_2_0000":{
+                          "type":"string",
+                          "description":"desc 2_2"
+                        },
+                        "2_3_0000_0000":{
+                          "type":"string",
+                          "description":"desc 2_3"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "first_prop":{
+              "type":"object",
+              "description":"desc for testing/first_prop",
+              "oneOf":[
+                {
+                  "description":"desc first_prop/1",
+                  "properties":{
+                    "1_1":{
+                      "type":"string",
+                      "description":"desc 1_1"
+                    },
+                    "1_2":{
+                      "type":"number",
+                      "description":"desc 1_2"
+                    }
+                  }
+                },
+                {
+                  "required":[
+                    "2_2"
+                  ],
+                  "description":"desc first_prop/2",
+                  "properties":{
+                    "2_1":{
+                      "type":"string",
+                      "description":"desc 2_1"
+                    },
+                    "2_2":{
+                      "type":"string",
+                      "description":"desc 2_2"
+                    },
+                    "2_3":{
+                      "type":"string",
+                      "description":"desc 2_3"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+
+        "Errors":{
+          "type":"object",
+          "description":"error testing",
+          "properties":{
+            "__t1":{
+              "type":"string"
+            }
+          }
+        },
+        
+        "Head_array_simple_fields":{
+          "type":"array",
+          "description":"The desc of head array",
+          "minItems":1,
+          "items":{
+            "description":"problem?",
+            "enum":[
+              "one",
+              "other",
+              "two"
+            ]
+          }
+        },
+        "test_for_oneOf_array":{
+          "type":"array",
+          "description":"The desc of oneOf array",
+          "minItems":1,
+          "oneOf":[
+            {
+              "description":"Desc of case one",
+              "items":{
+                "type": "object",
+                "properties": {
+                  "standard_name": {
+                    "type": "string",
+                    "description": "The name of the standard"
+                  },
+                  "standard_details": {
+                    "type": "string",
+                    "description": "Extra information related to the standard and the compliance"
+                  }
+                },
+                "required": [
+                  "standard_name"
+                ]
+              }
+            },
+            {
+              "description":"Second case desc",
+              "items":{
+                "type": "object",
+                "properties": {
+                  "interface_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "description":"Third case desc",
+              "items":{
+                "type": "string",
+                "description": "erfds"
+              }
+            },
+            {
+              "description":"Forth case desc",
+              "items":{
+                "enum":[
+                  "ena",
+                  "duo",
+                  "tria",
+                  "other"
+                ]
+              }
+            }
+          ]
+
+        },
+        "test_for_oneOf_object":{
+          "type":"object",
+          "description":"Description for testing",
+          "oneOf":[
+            {
+              "description": "Testing the desc of items in oneOf",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "This field"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            {
+              "description": "Testing again",
+              "required":[
+                "bool"
+              ],
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Thiss scscsac"
+                },
+                "bool": {
+                  "type": "boolean",
+                  "description": "Thiss scscsac"
+                },
+                "z":{
+                  "type":"array",
+                  "description":"z  desc",
+                  "items":{
+                    "type":"object",
+                    "properties":{
+                      "zero":{
+                        "type":"object",
+                        "description":"zero description",
+                        "properties":{
+                          "p1":{
+                            "type":"string",
+                            "description":"p1 desc"
+                          },
+                          "p2":{
+                            "type":"array",
+                            "description":"p2 desc",
+                            "items":{
+                              "type":"object",
+                              "properties":{
+                                "p2_1":{
+                                  "type":"number",
+                                  "description":"desc p2_1"
+                                },
+                                "p2_2":{
+                                  "type":"boolean",
+                                  "description":"desc p2_2"
+                                },
+                                "p2_3":{
+                                  "type":"object",
+                                  "description":"p2_3",
+                                  "oneOf":[
+                                    {
+                                      "description":"cs 0",
+                                      "properties":{
+                                        "cs_0_0":{
+                                          "type":"string",
+                                          "description":"cs 0 0 desc"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "description":"cs 1",
+                                      "properties":{
+                                        "cs_1_0":{
+                                          "type":"number",
+                                          "description":"cs 0 1 desc"
+                                        },
+                                        "cs_1_1":{
+                                          "type":"boolean",
+                                          "description":"cs 1 1 desc"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "one":{
+                        "type":"string",
+                        "description":"one desc"
+                      },
+                      "zwei":{
+                        "type":"object",
+                        "description":"zwei des"
+                      }
+                    },
+                    "required":[]
+                  }
+                },
+                "y":{
+                  "type":"array",
+                  "description":"y  desc",
+                  "items":{
+                    "type":"string"
+                  }
+                },
+                "x":{
+                  "type":"object",
+                  "description":"x desc",
+                  "required":[
+                    "x1"
+                  ],
+                  "properties":{
+                    "x1":{
+                      "type":"number",
+                      "description":"x1 desx"
+                    },
+                    "x2":{
+                      "type":"array",
+                      "description":"x2 desc",
+                      "minItems":1,
+                      "oneOf":[
+                        {
+                          "description":"c0 de",
+                          "items":{
+                            "type":"object",
+                            "properties":{
+                              "x2 c0":{
+                                "type":"string",
+                                "description":"x2 c0 des"
+                              }
+                            },
+                            "required": [
+                              "x2 c0"
+                            ]
+                          }
+                        },
+                        {
+                          "description":"c1 desc",
+                          "items":{
+                            "type":"object",
+                            "properties":{
+                              "x2_c1_p1":{
+                                "type":"number",
+                                "description":"x2 c1 p1 des"
+                              },
+                              "x2_c1_p2":{
+                                "type":"boolean",
+                                "description":"x2 c1 p2 des"
+                              }
+                            },
+                            "required": [
+                              "x2_c1_p2"
+                            ]
+                          }
+                        },
+                        {
+                          "description":"c2 d",
+                          "items":{
+                            "type":"number"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "description":"Cheking oneOf in the path",
+              "properties": {
+                "p1":{
+                  "type":"object",
+                  "properties":{
+                    "p1p1":{
+                      "type":"string"
+                    },
+                    "p1p0":{
+                      "type":"object",
+                      "description":"p1p0desc",
+                      "oneOf":[
+                        {
+                          "description":"d1",
+                          "properties":{
+                            "p1p0c0p1":{
+                              "type":"string",
+                              "description":"p1p0c0p1 des"
+                            }
+                          },
+                          "required":[
+                            "p1p0c0p1"
+                          ]
+                        },
+                        {
+                          "description":"dtwo",
+                          "properties":{
+                            "p1p0c1p1":{
+                              "type":"number",
+                              "description":"p1p0c1p1 des"
+                            },
+                            "a third property":{
+                              "type":"object",
+                              "description":"desc of third",
+                              "properties":{
+                                "test_prop":{
+                                  "type":"string",
+                                  "description":"desc of testprop"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "p1p2":{
+                      "type":"object"
+                    },
+                    "p1p3":{
+                      "type":"object",
+                      "properties":{
+                        "p1p3p1":{
+                          "type":"string"
+                        }
+                      }
+                    },
+                    "p1p4":{
+                      "type":"array",
+                      "description":"p1p4 ds",
+                      "minItems":1,
+                      "items":{
+                        "type":"object",
+                        "properties":{
+                          "p1p4p1":{
+                            "type":"string"
+                          }
+                        }
+                      }
+                    },
+                    "p1p5":{
+                      "type":"array",
+                      "description":"p1p5 des",
+                      "items":{
+                        "type":"string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

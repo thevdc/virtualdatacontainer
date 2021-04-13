@@ -1,0 +1,19 @@
+{
+	"Tip_1": [
+		"Elements of type:\"object\" are treated in two ways:",
+		"1. If there is a \"properties\" property, it is an object element and there should be other elements as properties of that element.",
+		"2. If there is no \"properties\" property, it is a json input field.",
+		"The problem that arrises is that if the \"properties\" property has a typo, the element is assumed as a json input field. The only possible way for the app to check for this mistake is to check if there is a \"required\":[...] property as this appears only in object elements and not in json input fields, thus alerting the user that the \"properties\" property is missing. Unfortunately when both \"properties\" is mispelled and \"required\":[...] is missing there is no way for the app to check that mistake and will assume the element as a json input field."
+	],
+	"Tip_2": [
+		"Json input fields parse their value by clicking the \"Parse\" button under the box.",
+		"If parsing has no errors, the value is stored and the json inside the box is aligned.",
+		"If an error accurs, the value is not saved and the user is informed about the error with an alert box.",
+		"If the current value of the box is saved, a blue ✓ symbol appears.",
+		"if the current value of the box is not saved, and thus has not been parsed correctly yet, a red ! symbol appears.",
+		"BE CAREFUL! Make sure you change section from the Menu Bar, Head Property from the side drawer or do any other action AFTER YOU HAVE PARSED YOUR JSON VALUE, otherwise it will be lost."
+	],
+	"Tip_3": [
+		"When using an \"oneOf\" property you can optionally set a \"description\" property for each case"
+	]
+}
