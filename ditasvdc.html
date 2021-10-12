@@ -1,0 +1,88 @@
+---
+layout: default
+---
+<style>
+.nav{
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.nav li{
+    display:inline;
+}
+.nav a{
+    display:inline-block;
+    padding:10px;
+}
+</style>
+
+<ul class="nav">
+   <b>
+      <li><a href="index.html">MAIN PAGE</a></li>
+      <li><a href="genericvdc.html">GENERIC VDC</a></li>
+      <li><a href="dataportsvdc.html">DATAPORTS VDC</a></li>
+      <li><a href="externallinks.html">EXTERNAL LINKS</a></li>
+  </b>
+</ul>
+
+<h1> DITAS European Project VDC Implementation </h1>
+
+<h2> DITAS VDC Blueprint JSON Schema </h2>
+ *You can find, download & view the schema under the “jsonSchemas” folder in the main repository, named “<a href="https://github.com/thevdc/virtualdatacontainer/tree/master/jsonSchemas/ditasSchema.json">ditasSchema.json</a>”*
+ <br>
+ *We also remind you that you can view the json schema (as well as any other json document) <a href="https://jsoneditoronline.org/">here</a>*
+ <br><br>
+ The DITAS VDC Blueprint’s standard JSON schema consists of five different sections. These sections are:
+ <ul>
+   <li>Internal Structure</li>
+   <li>Data Management</li>
+   <li>Abstract Properties</li>
+   <li>Cookbook Appendix</li>
+   <li>Exposed API</li>
+ </ul>
+ Both five sections are considered as required fields/objects. Of course, each section stands as a different json object.
+ <br><br>
+ <b>Internal Structure:</b> This is the first section, citing general information about the VDC Blueprint. It is a json object and consists of eight properties:
+ <ul>
+   <li>Overview, a json object containing a string, which should cite a short description of the VDC Blueprint</li>
+   <li>Data Sources, a json array consisting of different items (data sources). Each item will be a json object, including its unique properties  such as: description, location, class, type, connection parameters & schema.</li>
+   <li>Methods Input, a json object containing the part of the data source that each method needs to be executed. It has one property, called methods, a json array which actually is the list of methods.</li>
+   <li>Flow, a json object containing the data flow that implements the VDC. Flow has three properties: Platform (Spark or Node-RED), parameters and the source code.</li>
+   <li>DAL Images, a json object containing Docker images that must be deployed in the DAL indexed by DAL name. It will be used to compose the service name and the DNS entry that other images in the cluster can access to. Additional properties include Information about the DAL including its original location (meaning its original IP) and an optional set of images to deploy indexed by the image identifier.</li>
+   <li>VDC Images, a json object citing the available VDC images.</li>
+   <li>Identity Access Management, a json object access management properties such as jwks URI, Iam endpoint, roles (array) and the provider/s (array). Of those four, two are considered as required (jwks URI and Iam endpoint).</li>
+   <li>Testing Output Data, a json array consisting of two kinds of items. These items are method id (that is, the id (operationId) of the method (as indicated in the EXPOSED_API.paths field)  and zip data (that is, the URI to the zip testing output data for each one exposed VDC method). Both are considered as required.</li>
+ </ul>
+ Note that only two of the aforementioned eight properties are considered as “required” to be filled. These are the Overview and  Data Sources fields/properties.
+ <br><br>
+ <b>Data Management:</b> This is the second section. It is a json array and actually consists of different methods. Its properties are:
+ <ul>
+   <li>Method ID, a string field citing the ID (operationId) of the method (as indicated in the EXPOSED_API.paths field).</li>
+   <li>Attributes, a json object which actually consists of goal trees. These are data utility (json array of different metric definitions. Each definition has an id, a name, a type and possible additional properties), security and privacy.</li>
+ </ul>
+ Note that both properties are considered as “required” to be filled.
+ <br><br>
+ <b>Abstract Properties:</b> This is the third section. Any abstract properties of the VDC are included here. This section does not (intentionally) have a specific structure, since any property (of unknown structure beforehand) can be cited.
+ <br><br>
+ <b>Cookbook Appendix:</b> This is the fourth section. It mirrors the Cookbook Appendix section in the VDC Blueprint and, as a json object, it consists of three properties:
+ <ul>
+   <li>Identity Access Management, a json object containing two properties, validation keys (array of objects) and mapping (array of two kinds of specified objects, but only one kind can be included)</li>
+   <li>Deployment, a json object containing information of a deployment that may compromise several clusters. It has five properties. These are ID, infrastructures, name, status and any possible extra properties for resources, infrastructures or deployments. Only the ID is considered as required.</li>
+   <li>Resources, a json object citing a set of infrastructures that need to be instantiated or configurated to form clusters. Its properties are the name, the infrastructures (list) and the description. From the three, the name and the infrastructures are considered as required.</li>
+ </ul>
+ <br>
+ <b>Exposed API:</b> This is the fifth and final section of the standard DITAS Blueprint JSON Schema. It is a json object. We could specify it as the CAF API, since it is the CAF RESTful API of the VDC, written according to the version (3.0.2) of the OpenAPI Specification (OAS), but also adapted to DITAS requirements. It consists of one property and two definitions:
+ <ul>
+   The property:
+   <li>Paths, a json object containing POST and GET (again, json) objects.</li>
+   The definitions:
+   <li>Method, a json object. It is an exposed VDC Method and it Corresponds to the Operation Object defined in the OpenAPI Specification (OAS) version 3.0.2. It has five properties, which are summary, operationID, responses, x-data sources (array of data sources) and x-iam roles. Of those five, only the x-iam roles property is not considered as required to be filled.</li>
+   <li>Content, a json object containing pattern properties of the json schema.</li>
+ </ul>
+ <br><br>
+ <h2> VDC Editor for DITAS European Project </h2>
+ A Blueprint JSON Schema Editor has been implemented, according to the DITAS European Project’s Schema. The editor is fully functional and you can find the complete code under “<a href="https://github.com/thevdc/virtualdatacontainer/tree/master/DITASjsonSchemaEditor">DITASjsonSchemaEditor</a>” folder. After downloading the distribution package, all you need to do is run the ‘<a href="https://github.com/thevdc/virtualdatacontainer/blob/master/DITASjsonSchemaEditor/dist/html/index.html">index.html</a>’ file, inside the ‘<a href="https://github.com/thevdc/virtualdatacontainer/blob/master/DITASjsonSchemaEditor/dist/html">html</a>’ folder of the distribution. The editor will open in your native browser and, then, you are free to start using it. As we mentioned above, the editor is built upon the Blueprint JSON Schema of DITAS, which means that all sections and fields are exactly the same as the ones we analysed earlier (“DITAS VDC Blueprint JSON Schema”). If one understands the DITAS Schema, then he will be able to use the editor fluently. The editor is well structured and will always notify you, in case your input does not match the criteria (meaning, the Schema). For the developers who wish to dive into the editor’s code, an Excel document named “<a href="https://github.com/thevdc/virtualdatacontainer/blob/master/DITASjsonSchemaEditor/blueprint%20editor%20settings.xlsx">blueprint editor settings.xlsx</a>” is located right under the distribution folder, containing some information regarding the HTML attributes. There is a short introduction to the editors UI below:
+ <br><br>
+ <img src="media/ditas-json-schema-editor.gif" alt="hi" class="inline"/>
+ <br><br>

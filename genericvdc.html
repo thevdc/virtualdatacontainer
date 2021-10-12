@@ -1,0 +1,92 @@
+---
+layout: default
+---
+<style>
+.nav{
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.nav li{
+    display:inline;
+}
+.nav a{
+    display:inline-block;
+    padding:10px;
+}
+</style>
+
+<ul class="nav">
+   <b>
+      <li><a href="index.html">MAIN PAGE</a></li>
+      <li><a href="ditasvdc.html">DITAS VDC</a></li>
+      <li><a href="dataportsvdc.html">DATAPORTS VDC</a></li>
+      <li><a href="externallinks.html">EXTERNAL LINKS</a></li>
+  </b>
+</ul>
+
+<h1> Generic VDC Implementation </h1>
+
+<h2> Generic Blueprint-Artifact JSON Schema </h2>
+  *You can find, download & view the schema under the “jsonSchemas” folder in the main repository, named “<a href="https://github.com/thevdc/virtualdatacontainer/tree/master/jsonSchemas/genericSchema.json">genericSchema.json</a>”*
+  <br>
+  *Once again, we remind you that you can view the json schema (as well as any other json document) <a href="https://jsoneditoronline.org/">here</a>*
+  <br><br>
+  This is a generic approach to the VDC Artefact-Blueprint JSON Schema idea. The following are a more json-oriented view of the section “The VDC Artifact-Blueprint” above, since this section is based on the generic VDC Blueprint. The schema consists four different sections. These sections are:
+  <ul>
+    <li>General Description</li>
+    <li>Pricing Models</li>
+    <li>Tech Components</li>
+    <li>Service Interface</li>
+  </ul>
+  Both four sections are considered as required fields/objects. Same as before, each section stands as a different json object.
+  <br><br>
+  <b>General Description:</b> This is the first section of the VDC Artifact-Blueprint JSON Schema. It is a json object and provides General information to one of the Company's Decision Strategy Makers, usually the one responsible for its vision. It consists of five properties. These are:
+  <ul>
+    <li>Overview, a json object containing of three properties: Name (string field citing the name of the Artifact-Blueprint), description (string field that contains a short description of the Artifact) and tags (a json array consisting of elements - each element should contain some keywords that describe the functionality of every nested Artifact). All three properties are considered as required to be filled.</li>
+    <li>Licensing, a json object that includes Information about the licensing of the service. It consists of three properties, such as libraries (json array including all the libraries used), artifact (json object containing the name, the type and a short description of another artifact that is cited inside our main one) and nested artifacts (json array including short descriptions of any possible artifacts nested - not just cited - inside our main one).</li>
+    <li>Compliance, a json array containing all possible cases where the product (VDC) complies and conforms to a policy or law. These cases are including inside Compliance as items (json objects), consisting of their name and (possibly) a short description of theirs.</li>
+    <li>Interfaces, a json array that includes detailed information regarding the product’s Input and Output data. Each item in this list shall be a json object, containing an interface name, its input and output properties. All three properties inside each item are required.</li>
+    <li>Update Strategy, a json array containing the OS’s upgrade plan for traditional updates, security updates and backports. Each item of the list shall include three properties: Traditional updates, Security updates and Backport fixes. Only the Security updates field/property is considered as required.</li>
+  </ul>
+  Note that all five aforementioned properties are considered as “required” to be filled.
+  <br><br>
+  <b>Pricing Models:</b> This is the second section. Similar to all other main sections, its a json object and it describes the pricing model specified, aiming the company’s executive who has primary responsibility for managing it’s finances and all the issues of financial nature. The two main pricing model scenarios (structured in the schema) are:
+  <ul>
+    <li>Pricing as a structure, a json object that includes the pre-defined fixed price of the VDC. Therefore, it contains one property named ‘fixed price’. </li>
+    <li>Pricing as a service, a json object containing information about the pricing of all the individual components inside the VDC. It contains two properties: Fixed price, where the total amount is stated, and pricing function, which includes several pricing factors based on the individual components. Pricing function’s property will be a json array of these factors (some factors could be time, number of hits, or something else).</li>
+  </ul>
+  The Pricing Models section must contain any of the two models above.
+  <br><br>
+  <b>Tech Components:</b> This is the third Schema section. As a json object, it refers to the company’s executive whose main/primary focus is on scientific and technological issues within the organization. It has two properties, which are:
+  <ul>
+    <li>Technological details, one of the most important properties of the Schema. It is a json object and it includes all the technological information that define the VDC. It consists of nine properties. All nine are required to be filled. These are:</li>
+    <ul>
+      <li>OS, a json object citing information about the Operating System. Its two attributes are the OS’s host and the distribution.</li>
+      <li>Kernel, a json object containing al the kernel modules. It consists of a json array, where all the modules are cited as items.</li>
+      <li>Tech Overview, a json object. It contains a json array with all the tech modules of the VDC. Each item (module) inside the array has attributes such as its module name (required), its sensitivity level, its versioning libraries, its scalability, its limitations, as well as its supporting databases.</li>
+      <li>Deployment, a json object containing vital information of the deployment phase. Its two properties are dependencies (json array with each item being a module/dependency) and sequence (json array where each item is a specific sequence of modules, identified by their module_names as these have been defined in the tech_overview.modules field). Only the sequence is a required field.</li>
+      <li>Cookbooks, a json array consisting of items. Each item includes two properties, the module name (as this has been defined in the tech_overview.modules field) and the script (the URI to the cookbook script file for each module).</li>
+      <li>Artifact orchestration tools, a string field which shall contain one of the following: IBM Cloud Orchestrator, Microsoft Azure Cost Management, Morpheus, CloudBolt, Embotics, RightScale, OpenStack, BMC Cloud Lifecycle Management or vRealize Suite.</li>
+      <li>Selinux, a json object containing one boolean field that indicates whether SELINUX is enabled in the VDC or not.</li>
+      <li>Vtpm, same as above, a json object containing a boolean field that indicates whether vTPM is used in the VDC or not.</li>
+      <li>Protocol standards, a json array containing two standards, Spiffe and Json Web Token. Each standard includes a boolean field that indicated whether the particular standard is used in the VDC or not.</li>
+    </ul>
+    <li>Cookbook type, a string field containing only the value of the cookbook type specified. This field should be choosed among a pre-defined list of cookbook type values.</li>
+  </ul>
+  <br>
+  <b>Service Interface:</b> This is the fourth and final section of the generic VDC Artifact-Blueprint JSON Schema. It is a json object and refers to the company’s developers. It consists of five properties and these are:
+  <ul>
+    <li>Junit Tests, a json array containing all the junit tests for each module. Each array item must include the module name (as this has been defined in the Cookbook_Appendix.tech_overview.modules field) and the junit test.</li>
+    <li>Input/Output, a json array consisting of example data for the input/output of each interface, as these have been defined in the General_Description.Interfaces field. Each array item must cite the interface name, an input example and an output example.</li>
+    <li>Tuples, a json array that includes all the information needed for the developers to understand which tuples are contained in each cookbook. Each array item must contain the tuple’s name and information regarding it.</li>
+    <li>API, once again, a json array. It includes additional metadata for each interface as these have been defined in the General_Description.Interfaces field. Each array item must include the interface name, the path (a relative path to an individual endpoint, beginning with a slash) and the operation type (could be one of: get, put, post, delete, head, patch).</li>
+    <li>Servers, again, a json array. It includes all the servers’ endpoints that are used from the VDC. Each array item consists of one url that leads to a server.</li>
+  </ul>
+  All five aforementioned properties are considered as “required” to be filled.
+  <br><br>
+  <h2> Generic VDC Artifact-Blueprint Editor </h2>
+  The VDC Artifact-Blueprint Editor has been developed based on the Generic Artifact-Blueprint JSON schema analysed above. It’s implementation took full advantage of JavaScript’s <a href="https://reactjs.org">React</a> open source library. You can find the full code of the editor, as well as the installation (& deployment) instructions, <a href="https://github.com/AlvertisMinas/VDC-Artifact-Editor">here</a>. The editor is available for use and testing by clicking <a href="http://147.102.19.87:3000">here</a>. Through the VDC Artifact-Blueprint editor, one can create and generate his/her own VDC Blueprint JSON schema, or make modifications on the original one (the Generic Blueprint schema). If one understands the Generic schema explained in the previous paragraphs, the use of the editor will be extremely easy. The editor implementation has passed multiple quality tests and will suit every VDC owner’s (that is, one that wishes to create a JSON schema for his model) needs. As stated before, the editor is structured using React. Therefore, any developer who wants to get into the coding part of the editor, will have to be experienced in JavaScript and the language’s libraries. Here is a brief introduction to the editor’s user interface, through the following GIF:
+  <br><br>
+  <img src="media/generic-vdc-artifact-blueprint-schema-editor.gif" alt="hi" class="inline"/>
